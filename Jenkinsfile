@@ -4,7 +4,7 @@ pipeline {
   
   
 	  options {  
-	  	buildDiscarder(logRotator(numToKeepStr: '3')) 
+	  	buildDiscarder(logRotator(numToKeepStr: '5')) 
 	  	disableConcurrentBuilds()
 	  }
   
@@ -22,9 +22,18 @@ pipeline {
 		  			gitTool:'Git_Centos', 
 		  			submoduleCfg: [], 
 		  			userRemoteConfigs: [[credentialsId:'GitHub_yehanPortilla', 
-		  			url:'https://github.com/yehanportilla/adnCeibaYehan.git']]])      
+		  			url:'https://github.com/yehanportilla/adnCeibaYehan.git']]])
+		  			
+		  			sh 'gradle clean'      
 		  		}    
-		  	}    
+		  	}
+		  	
+		  stage('Compile') {
+			steps {
+				echo "------------>Compile<------------"
+				sh 'gradle --b ./build.gradle compileJava'
+			}
+		 }    
 		  	
 		  	stage('Unit Tests') {      
 		  		steps{        
@@ -34,15 +43,18 @@ pipeline {
 		  	
 		  	stage('Integration Tests') {      
 		  		steps {        
-		  			echo "------------>Integration Tests<------------"      
+		  	    echo "------------>Unit Tests<------------"
+				sh 'gradle --stacktrace test'
+				junit '**/build/test-results/test/*.xml' //aggregate test results - JUnit
+				step([$class: 'JacocoPublisher']) 	     
 		  		}    
 		  	}    
 		  	stage('Static Code Analysis') {      
 		  		steps{        
-		  			echo '------------>Code analysis<------------'        
-		  			withSonarQubeEnv('Sonar') {
-		  				sh "${tool name: 'SonarScanner', type:'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
-		        	}      
+		  			echo '------------>Analisis de codigo estatico<------------'
+					withSonarQubeEnv('Sonar') {
+					sh "${tool name: 'SonarScanner', type: 'hudson.plugins.sonar.SonarRunnerInstallation'}/bin/sonar-scanner"
+				}     
 		        }    
 		    }    
 		    stage('Build') {      
@@ -60,7 +72,10 @@ pipeline {
 		    	echo 'This will run only if successful'    
 		    }    
 		    failure {      
-		    	echo 'This will run only if failed'    
+		    	echo 'This will run only if failed'
+			    mail (to: 'yehan.portilla@ceiba.com.co',
+			    subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
+			    body: "Something is wrong with ${env.BUILD_URL}") 
 		    }    
 		    unstable {      
 		    	echo 'This will run only if the run was marked as unstable'    
