@@ -30,7 +30,7 @@ stage('Checkout') {
       extensions: [],
       ​gitTool: 'Git_Centos',
       submoduleCfg: [],
-      userRemoteConfigs: [[​credentialsId: 'GitHub_yehanPortilla', url: 'https://github.com/yehanportilla/yehanPortillaCeiba.git']]])
+      userRemoteConfigs: [[​credentialsId: 'GitHub_yehanPortilla', url: 'https://github.com/yehanportilla/adnCeibaYehan.git']]])
   }
 }
 
