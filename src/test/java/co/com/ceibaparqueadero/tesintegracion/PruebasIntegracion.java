@@ -106,7 +106,7 @@ public class PruebasIntegracion {
 
 		// Arrange
 		ClaseAutomotorBuilder claseAutomotorBuilder = new ClaseAutomotorBuilder();
-		ClaseAutomotor detalleClase = claseAutomotorBuilder.conId(4l).conNombre("Volqueta").build();
+		ClaseAutomotor detalleClase = claseAutomotorBuilder.conId(null).conNombre(null).build();
 		
 		when(claseAutomotorRepositorio.save(detalleClase)).thenReturn(null);
 		
@@ -116,6 +116,27 @@ public class PruebasIntegracion {
 		// Assert
 		assertEquals("Error: Al Registrar!",claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
 	}
+
+    //--------------------
+	
+	@Test
+	public void guardarClaseVehiculoConDatos() {
+
+		// Arrange
+		ClaseAutomotorBuilder claseAutomotorBuilder = new ClaseAutomotorBuilder();
+		ClaseAutomotor detalleClase = claseAutomotorBuilder.conId(4l).conNombre("Tractor").build();
+		
+		when(claseAutomotorRepositorio.save(detalleClase)).thenReturn(detalleClase);
+		
+		// Act
+		claseAutomotorLogica.guardarClaseAutomor(detalleClase);
+
+		// Assert
+		assertEquals("Clase: Registrada Exitosamente !",claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
+	}
+	
+	
+	
 	
 	/**
 	 * Test Integracion encargado de guarda el estado
