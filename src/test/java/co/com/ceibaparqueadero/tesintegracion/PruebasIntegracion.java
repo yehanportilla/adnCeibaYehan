@@ -69,11 +69,10 @@ public class PruebasIntegracion {
 	public void listarTiempos() {
 
 		// Arrange
-		//List<String> esperado = Arrays.asList();
-
+		List<String> esperado = Arrays.asList();
+		
 		// Act
-		List<Tiempo> esperado = tiempoLogica.listarTiempo();
-		List<Tiempo> tiempo = tiempoRepositorio.findAll();
+		List<Tiempo> tiempo = tiempoLogica.listarTiempo();
 
 		// Assert
 		assertEquals(esperado, tiempo);
