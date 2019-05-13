@@ -16,6 +16,7 @@ import co.com.ceibaparqueadero.aplicacion.repositorio.EstadoRepositorio;
 import co.com.ceibaparqueadero.aplicacion.repositorio.TiempoRepositorio;
 import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
+import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
 import co.com.ceibaparqueadero.infraestructura.entidades.ClaseAutomotor;
 import co.com.ceibaparqueadero.infraestructura.entidades.Estado;
 import co.com.ceibaparqueadero.infraestructura.entidades.Tiempo;
@@ -36,6 +37,9 @@ public class PruebasIntegracion {
 
 	@InjectMocks
 	EstadoLogica estadoLogica;
+	
+	@InjectMocks
+	TiempoLogica tiempoLogica;
 
 	@Before
 	public void setUp() {
@@ -65,9 +69,10 @@ public class PruebasIntegracion {
 	public void listarTiempos() {
 
 		// Arrange
-		List<String> esperado = Arrays.asList();
+		//List<String> esperado = Arrays.asList();
 
 		// Act
+		List<Tiempo> esperado = tiempoLogica.listarTiempo();
 		List<Tiempo> tiempo = tiempoRepositorio.findAll();
 
 		// Assert
@@ -129,5 +134,5 @@ public class PruebasIntegracion {
 	private Estado estado() {
 		return null;
 	}
-
+	
 }
