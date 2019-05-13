@@ -37,7 +37,7 @@ public class PruebasIntegracion {
 
 	@InjectMocks
 	EstadoLogica estadoLogica;
-	
+
 	@InjectMocks
 	TiempoLogica tiempoLogica;
 
@@ -70,7 +70,7 @@ public class PruebasIntegracion {
 
 		// Arrange
 		List<String> esperado = Arrays.asList();
-		
+
 		// Act
 		List<Tiempo> tiempo = tiempoLogica.listarTiempo();
 
@@ -88,7 +88,7 @@ public class PruebasIntegracion {
 		List<String> esperado = Arrays.asList();
 
 		// Act
-		List<ClaseAutomotor> claseAuto = claseAutomotorRepositorio.findAll();
+		List<ClaseAutomotor> claseAuto = claseAutomotorLogica.listarClases();
 
 		// Assert
 		assertEquals(esperado, claseAuto);
@@ -101,17 +101,14 @@ public class PruebasIntegracion {
 	public void guardarClaseVehiculo() {
 
 		// Arrange
-		ClaseAutomotor detalleClase = clase();
+		ClaseAutomotorBuilder claseAutomotorBuilder = new ClaseAutomotorBuilder();
+		ClaseAutomotor detalleClase = claseAutomotorBuilder.conId(4l).conNombre("Volqueta").build();
 
 		// Act
 		int codigoMensaje = claseAutomotorLogica.guardarClaseAutomor(detalleClase).getCodigo();
 
 		// Assert
 		assertEquals(0, codigoMensaje);
-	}
-
-	private ClaseAutomotor clase() {
-		return null;
 	}
 
 	/**
@@ -133,5 +130,5 @@ public class PruebasIntegracion {
 	private Estado estado() {
 		return null;
 	}
-	
+
 }

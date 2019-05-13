@@ -14,6 +14,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "clase_automotor")
 @EntityListeners(AuditingEntityListener.class) // para hacer auditoria
 public class ClaseAutomotor {
+	
 
 	@Id
 	@Column(name = "CLASE_ID")
@@ -38,5 +39,16 @@ public class ClaseAutomotor {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	//constructor para clase builder
+	public ClaseAutomotor(Long id, String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+	}
+	// para que no afecte al listar las clases
+	public ClaseAutomotor() {
+		
+	}
+		
 
 }
