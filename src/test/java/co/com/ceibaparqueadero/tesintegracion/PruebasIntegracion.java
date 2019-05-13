@@ -10,9 +10,8 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
+
 
 import co.com.ceibaparqueadero.aplicacion.repositorio.ClaseAutomotorRepositorio;
 import co.com.ceibaparqueadero.aplicacion.repositorio.EstadoRepositorio;
@@ -20,7 +19,6 @@ import co.com.ceibaparqueadero.aplicacion.repositorio.TiempoRepositorio;
 import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
 import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
-import co.com.ceibaparqueadero.dominio.utilidades.Respuesta;
 import co.com.ceibaparqueadero.infraestructura.entidades.ClaseAutomotor;
 import co.com.ceibaparqueadero.infraestructura.entidades.Estado;
 import co.com.ceibaparqueadero.infraestructura.entidades.Tiempo;
@@ -39,8 +37,7 @@ public class PruebasIntegracion {
 	@InjectMocks
 	ClaseAutomotorLogica claseAutomotorLogica;
 	
-	@Spy
-	ClaseAutomotorLogica claseAutomotorLogicaMockito;
+
 
 	@InjectMocks
 	EstadoLogica estadoLogica;
@@ -111,13 +108,13 @@ public class PruebasIntegracion {
 		ClaseAutomotorBuilder claseAutomotorBuilder = new ClaseAutomotorBuilder();
 		ClaseAutomotor detalleClase = claseAutomotorBuilder.conId(4l).conNombre("Volqueta").build();
 		
-		// Act
-		int codigoMensaje = claseAutomotorLogica.guardarClaseAutomor(detalleClase).getCodigo();
+		when(claseAutomotorRepositorio.save(detalleClase)).thenReturn(null);
 		
-		Mockito.when(claseAutomotorLogica.guardarClaseAutomor(detalleClase)).thenReturn(null);
+		// Act
+		claseAutomotorLogica.guardarClaseAutomor(detalleClase);
 
 		// Assert
-		assertEquals(0, codigoMensaje);
+		assertEquals("Error: Al Registrar!",claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
 	}
 	
 	/**
