@@ -1,4 +1,4 @@
-package co.com.ceibaparqueadero.servicios;
+package co.com.ceibaparqueadero.infraestructura.servicios;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
