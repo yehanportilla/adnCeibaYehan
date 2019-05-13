@@ -28,27 +28,32 @@ public class CalculaTiempoParqueaderoLogica {
 		int dias = 0;
 		int horas = 0;
 		int minutos = 0;
-		if (diferencia > 86400) {
+		int sec = 86400;
+		int seg = 3600;
+		int min = 60;
+
+		if (diferencia > sec) {
 
 			double dia = (diferencia / 86400);
 			dias = (int) Math.floor(dia);
 			diferencia = diferencia - (dias * 86400);
 		}
-		if (diferencia > 3600) {
+		if (diferencia > seg) {
 
 			double hora = (diferencia / 3600);
 			horas = (int) Math.floor(hora);
 
 			diferencia = diferencia - (horas * 3600);
 		}
-		if (diferencia > 60) {
+		if (diferencia > min) {
 
 			double minuto = (diferencia / 60);
 			minutos = (int) Math.floor(minuto);
 			diferencia = diferencia - (minutos * 60);
 		}
 		respuesta.setCodigo(0);
-		respuesta.setMensaje("Hay " + dias + " dias, " + horas + " horas, " + minutos + " minutos y " + diferencia + " segundos de diferencia");
+		respuesta.setMensaje("Hay " + dias + " dias, " + horas + " horas, " + minutos + " minutos y " + diferencia
+				+ " segundos de diferencia");
 
 		return respuesta;
 
