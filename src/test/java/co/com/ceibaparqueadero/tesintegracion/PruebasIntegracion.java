@@ -12,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-
 import co.com.ceibaparqueadero.aplicacion.repositorio.ClaseAutomotorRepositorio;
 import co.com.ceibaparqueadero.aplicacion.repositorio.EstadoRepositorio;
 import co.com.ceibaparqueadero.aplicacion.repositorio.TiempoRepositorio;
@@ -36,8 +35,6 @@ public class PruebasIntegracion {
 
 	@InjectMocks
 	ClaseAutomotorLogica claseAutomotorLogica;
-	
-
 
 	@InjectMocks
 	EstadoLogica estadoLogica;
@@ -99,45 +96,45 @@ public class PruebasIntegracion {
 	}
 
 	/**
-	 * Test Integracion encargado de guardar la clase de vehiculo
+	 * Test Integracion encargado de guardar la clase de vehiculo con datos Null
 	 */
 	@Test
-	public void guardarClaseVehiculo() {
+	public void guardarClaseVehiculoNull() {
 
 		// Arrange
 		ClaseAutomotorBuilder claseAutomotorBuilder = new ClaseAutomotorBuilder();
 		ClaseAutomotor detalleClase = claseAutomotorBuilder.conId(null).conNombre(null).build();
-		
+
 		when(claseAutomotorRepositorio.save(detalleClase)).thenReturn(null);
-		
+
 		// Act
 		claseAutomotorLogica.guardarClaseAutomor(detalleClase);
 
 		// Assert
-		assertEquals("Error: Al Registrar!",claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
+		assertEquals("Error: Al Registrar!", claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
 	}
 
-    //--------------------
-	
+	/**
+	 * Test Integracion encargado de guardar la clase de vehiculo con datos
+	 */
+
 	@Test
 	public void guardarClaseVehiculoConDatos() {
 
 		// Arrange
 		ClaseAutomotorBuilder claseAutomotorBuilder = new ClaseAutomotorBuilder();
 		ClaseAutomotor detalleClase = claseAutomotorBuilder.conId(4l).conNombre("Tractor").build();
-		
+
 		when(claseAutomotorRepositorio.save(detalleClase)).thenReturn(detalleClase);
-		
+
 		// Act
 		claseAutomotorLogica.guardarClaseAutomor(detalleClase);
 
 		// Assert
-		assertEquals("Clase: Registrada Exitosamente !",claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
+		assertEquals("Clase: Registrada Exitosamente !",
+				claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
 	}
-	
-	
-	
-	
+
 	/**
 	 * Test Integracion encargado de guarda el estado
 	 */
