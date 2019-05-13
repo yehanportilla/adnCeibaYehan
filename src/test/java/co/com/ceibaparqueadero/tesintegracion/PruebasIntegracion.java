@@ -57,7 +57,7 @@ public class PruebasIntegracion {
 		List<String> esperado = Arrays.asList();
 
 		// Act
-		List<Estado> estado = estadoRepositorio.findAll();
+		List<Estado> estado = estadoLogica.listarEstado();
 
 		// Assert
 		assertEquals(esperado, estado);
@@ -131,28 +131,47 @@ public class PruebasIntegracion {
 		claseAutomotorLogica.guardarClaseAutomor(detalleClase);
 
 		// Assert
-		assertEquals("Clase: Registrada Exitosamente !",
-				claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
+		assertEquals("Clase: Registrada Exitosamente !",claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
 	}
 
+	
 	/**
-	 * Test Integracion encargado de guarda el estado
+	 * Test Integracion encargado de guarda el estado con datos
 	 */
 	@Test
-	public void guardarEstadoVehiculo() {
+	public void guardarEstadoVehiculoConDatos() {
 
 		// Arrange
-		Estado detalleEstado = estado();
+		Estado detalleEstado = new Estado();
 
-		// Act
-		int codigoMensaje = estadoLogica.guardarEstado(detalleEstado).getCodigo();
+		// Act //estadoRepositorio
+		when(estadoRepositorio.save(detalleEstado)).thenReturn(detalleEstado);
 
 		// Assert
-		assertEquals(0, codigoMensaje);
+		assertEquals("Estado: Registrado Exitosamente !",estadoLogica.guardarEstado(detalleEstado).getMensaje());
+	}
+	
+	/**
+	 * Test Integracion encargado de guarda el estado null
+	 */
+	@Test
+	public void guardarEstadoVehiculoNull() {
+
+		// Arrange
+		Estado detalleEstado = EstadoNull();
+
+		// Act //estadoRepositorio
+		when(estadoRepositorio.save(detalleEstado)).thenReturn(null);
+
+		// Assert
+		assertEquals("Error: Al Registrar!",estadoLogica.guardarEstado(detalleEstado).getMensaje());
 	}
 
-	private Estado estado() {
+	private Estado EstadoNull() {
+		
 		return null;
 	}
+
+
 
 }
