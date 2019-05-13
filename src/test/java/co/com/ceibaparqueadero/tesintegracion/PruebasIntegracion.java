@@ -131,10 +131,10 @@ public class PruebasIntegracion {
 		claseAutomotorLogica.guardarClaseAutomor(detalleClase);
 
 		// Assert
-		assertEquals("Clase: Registrada Exitosamente !",claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
+		assertEquals("Clase: Registrada Exitosamente !",
+				claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
 	}
 
-	
 	/**
 	 * Test Integracion encargado de guarda el estado con datos
 	 */
@@ -148,9 +148,9 @@ public class PruebasIntegracion {
 		when(estadoRepositorio.save(detalleEstado)).thenReturn(detalleEstado);
 
 		// Assert
-		assertEquals("Estado: Registrado Exitosamente !",estadoLogica.guardarEstado(detalleEstado).getMensaje());
+		assertEquals("Estado: Registrado Exitosamente !", estadoLogica.guardarEstado(detalleEstado).getMensaje());
 	}
-	
+
 	/**
 	 * Test Integracion encargado de guarda el estado null
 	 */
@@ -160,18 +160,57 @@ public class PruebasIntegracion {
 		// Arrange
 		Estado detalleEstado = EstadoNull();
 
-		// Act //estadoRepositorio
+		// Act
 		when(estadoRepositorio.save(detalleEstado)).thenReturn(null);
 
 		// Assert
-		assertEquals("Error: Al Registrar!",estadoLogica.guardarEstado(detalleEstado).getMensaje());
+		assertEquals("Error: Al Registrar!", estadoLogica.guardarEstado(detalleEstado).getMensaje());
 	}
 
-	private Estado EstadoNull() {
-		
+	/**
+	 * Test Integracion encargado de guarda el tiempo con datos
+	 * 
+	 */
+
+	@Test
+	public void guardarTiempoParqueoConDatos() {
+
+		// Arrange
+		Tiempo detalleTiempo = new Tiempo();
+
+		// Act
+		when(tiempoRepositorio.save(detalleTiempo)).thenReturn(detalleTiempo);
+
+		// Assert
+		assertEquals("Tiempo: Registrado Exitosamente !", tiempoLogica.guardarTiempo(detalleTiempo).getMensaje());
+	}
+
+	/**
+	 * Test Integracion encargado de guarda el tiempo con datos null
+	 * 
+	 */
+
+	@Test
+	public void guardarTiempoParqueoNull() {
+
+		// Arrange
+		Tiempo detalleTiempo = TiempoNull();
+
+		// Act
+		when(tiempoRepositorio.save(detalleTiempo)).thenReturn(null);
+
+		// Assert
+		assertEquals("Error: Al Registrar!", tiempoLogica.guardarTiempo(detalleTiempo).getMensaje());
+	}
+
+	private Tiempo TiempoNull() {
+
 		return null;
 	}
 
+	private Estado EstadoNull() {
 
+		return null;
+	}
 
 }
