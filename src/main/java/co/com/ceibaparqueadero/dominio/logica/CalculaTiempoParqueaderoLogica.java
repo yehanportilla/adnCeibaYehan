@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import co.com.ceibaparqueadero.dominio.utilidades.Respuesta;
+import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
 
 public class CalculaTiempoParqueaderoLogica {
 

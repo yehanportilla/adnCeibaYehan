@@ -1,4 +1,4 @@
-package co.com.ceibaparqueadero.dominio.utilidades;
+package co.com.ceibaparqueadero.dominio.exepciones;
 
 import co.com.ceibaparqueadero.infraestructura.entidades.ClaseAutomotor;
 import co.com.ceibaparqueadero.infraestructura.entidades.Estado;
@@ -8,6 +8,8 @@ public class Respuesta {
 
 	private String mensaje;
 	private Integer codigo;
+	
+	
 	private ClaseAutomotor claseAutomotor;
 	private Tiempo tiempo;
 	private Estado estado;

@@ -2,7 +2,7 @@ package co.com.ceibaparqueadero.dominio.logica;
 
 import java.util.Calendar;
 
-import co.com.ceibaparqueadero.dominio.utilidades.Respuesta;
+import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
 
 public class RegistroParqueaderoLogica {
 
