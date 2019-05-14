@@ -31,7 +31,7 @@ public class Tarifa {
 
 	@ManyToOne
 	@JoinColumn(name = "TIEMPO_ID")
-	private Estado estado;
+	private Tiempo tiempo;
 
 	public Long getId() {
 		return id;
@@ -57,12 +57,14 @@ public class Tarifa {
 		this.claseAutomotor = claseAutomotor;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public Tiempo getTiempo() {
+		return tiempo;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setTiempo(Tiempo tiempo) {
+		this.tiempo = tiempo;
 	}
+
+	
 
 }

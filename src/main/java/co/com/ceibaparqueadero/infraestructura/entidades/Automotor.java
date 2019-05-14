@@ -25,7 +25,7 @@ public class Automotor {
 	@Column(name = "AUTOMOTOR_PLACA")
 	private String placa;
 
-	@Column(name = "AUTOMOTOR_CILINDRAGE")
+	@Column(name = "AUTOMOTOR_CILINDRAJE")
 	private Long cilindraje;
 
 	@ManyToOne
@@ -63,5 +63,7 @@ public class Automotor {
 	public void setClaseAutomotor(ClaseAutomotor claseAutomotor) {
 		this.claseAutomotor = claseAutomotor;
 	}
+
+	
 
 }
