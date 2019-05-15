@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ceibaparqueadero.aplicacion.repositorio.TiempoRepositorio;
 import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
 import co.com.ceibaparqueadero.infraestructura.entidades.Tiempo;
+import co.com.ceibaparqueadero.infraestructura.repositorios.TiempoRepositorio;
 
 @RestController
 public class TiempoLogica {

@@ -1,4 +1,4 @@
-package co.com.ceibaparqueadero.aplicacion.repositorio;
+package co.com.ceibaparqueadero.infraestructura.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

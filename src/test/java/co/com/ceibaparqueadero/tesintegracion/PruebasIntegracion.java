@@ -11,16 +11,20 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
 
-import co.com.ceibaparqueadero.aplicacion.repositorio.ClaseAutomotorRepositorio;
-import co.com.ceibaparqueadero.aplicacion.repositorio.EstadoRepositorio;
-import co.com.ceibaparqueadero.aplicacion.repositorio.TiempoRepositorio;
 import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
+import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
 import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
 import co.com.ceibaparqueadero.infraestructura.entidades.ClaseAutomotor;
 import co.com.ceibaparqueadero.infraestructura.entidades.Estado;
+import co.com.ceibaparqueadero.infraestructura.entidades.Tarifa;
 import co.com.ceibaparqueadero.infraestructura.entidades.Tiempo;
+import co.com.ceibaparqueadero.infraestructura.repositorios.ClaseAutomotorRepositorio;
+import co.com.ceibaparqueadero.infraestructura.repositorios.EstadoRepositorio;
+import co.com.ceibaparqueadero.infraestructura.repositorios.TarifaRepositorio;
+import co.com.ceibaparqueadero.infraestructura.repositorios.TiempoRepositorio;
 
 public class PruebasIntegracion {
 
@@ -33,6 +37,12 @@ public class PruebasIntegracion {
 	@Mock
 	private ClaseAutomotorRepositorio claseAutomotorRepositorio;
 
+	@Mock
+	private TarifaRepositorio tarifaRepositorio;
+	
+	@Spy
+	private TarifaLogica tarifaLogicaMockito;
+
 	@InjectMocks
 	ClaseAutomotorLogica claseAutomotorLogica;
 
@@ -41,6 +51,9 @@ public class PruebasIntegracion {
 
 	@InjectMocks
 	TiempoLogica tiempoLogica;
+
+	@InjectMocks
+	TarifaLogica tarifaLogica;
 
 	@Before
 	public void setUp() {
@@ -144,7 +157,7 @@ public class PruebasIntegracion {
 		// Arrange
 		Estado detalleEstado = new Estado();
 
-		// Act //estadoRepositorio
+		// Act
 		when(estadoRepositorio.save(detalleEstado)).thenReturn(detalleEstado);
 
 		// Assert
@@ -202,6 +215,24 @@ public class PruebasIntegracion {
 		// Assert
 		assertEquals("Error: Al Registrar!", tiempoLogica.guardarTiempo(detalleTiempo).getMensaje());
 	}
+
+	/**
+	 * Test Integracion encargado de listar las tarifas
+	 */
+	@Test
+	public void listarTarifas() {
+
+		// Arrange
+		List<String> esperado = Arrays.asList();
+
+		// Act
+		List<Tarifa> tarifa = tarifaLogica.listarTarifa();
+
+		// Assert
+		assertEquals(esperado, tarifa);
+	}
+
+	
 
 	private Tiempo TiempoNull() {
 

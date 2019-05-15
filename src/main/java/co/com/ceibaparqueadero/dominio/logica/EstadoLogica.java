@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ceibaparqueadero.aplicacion.repositorio.EstadoRepositorio;
 import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
 import co.com.ceibaparqueadero.infraestructura.entidades.Estado;
+import co.com.ceibaparqueadero.infraestructura.repositorios.EstadoRepositorio;
 
 @RestController
 public class EstadoLogica {
