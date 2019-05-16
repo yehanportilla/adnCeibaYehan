@@ -1,4 +1,4 @@
-package co.com.ceibaparqueadero.infraestructura.entidades;
+package co.com.ceibaparqueadero.infraestructura.persistencia.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,7 +15,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Entity
 @Table(name = "tarifa")
 @EntityListeners(AuditingEntityListener.class)
-public class Tarifa {
+public class TarifaEntidad {
 
 	@Id
 	@Column(name = "TARIFA_ID")
@@ -27,11 +27,11 @@ public class Tarifa {
 
 	@ManyToOne
 	@JoinColumn(name = "CLASE_ID")
-	private ClaseAutomotor claseAutomotor;
+	private ClaseAutomotorEntidad claseAutomotorEntidad;
 
 	@ManyToOne
 	@JoinColumn(name = "TIEMPO_ID")
-	private Tiempo tiempo;
+	private TiempoEntidad tiempoEntidad;
 
 	public Long getId() {
 		return id;
@@ -49,20 +49,20 @@ public class Tarifa {
 		this.valor = valor;
 	}
 
-	public ClaseAutomotor getClaseAutomotor() {
-		return claseAutomotor;
+	public ClaseAutomotorEntidad getClaseAutomotor() {
+		return claseAutomotorEntidad;
 	}
 
-	public void setClaseAutomotor(ClaseAutomotor claseAutomotor) {
-		this.claseAutomotor = claseAutomotor;
+	public void setClaseAutomotor(ClaseAutomotorEntidad claseAutomotorEntidad) {
+		this.claseAutomotorEntidad = claseAutomotorEntidad;
 	}
 
-	public Tiempo getTiempo() {
-		return tiempo;
+	public TiempoEntidad getTiempo() {
+		return tiempoEntidad;
 	}
 
-	public void setTiempo(Tiempo tiempo) {
-		this.tiempo = tiempo;
+	public void setTiempo(TiempoEntidad tiempoEntidad) {
+		this.tiempoEntidad = tiempoEntidad;
 	}
 
 }

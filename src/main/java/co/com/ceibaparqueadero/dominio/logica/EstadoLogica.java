@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
-import co.com.ceibaparqueadero.infraestructura.entidades.Estado;
-import co.com.ceibaparqueadero.infraestructura.repositorios.EstadoRepositorio;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.EstadoRepositorio;
 
 @RestController
 public class EstadoLogica {
@@ -23,7 +23,7 @@ public class EstadoLogica {
 	 * 
 	 * @return List<Estado>
 	 */
-	public List<Estado> listarEstado() {
+	public List<EstadoEntidad> listarEstado() {
 		return estadoRepositorio.findAll();
 	}
 
@@ -33,11 +33,11 @@ public class EstadoLogica {
 	 * @param detalleEstado
 	 * @return
 	 */
-	public Respuesta guardarEstado(@Valid @RequestBody Estado detalleEstado) {
+	public Respuesta guardarEstado(@Valid @RequestBody EstadoEntidad detalleEstado) {
 
 		Respuesta respuesta = new Respuesta();
 
-		Estado detalle = estadoRepositorio.save(detalleEstado);
+		EstadoEntidad detalle = estadoRepositorio.save(detalleEstado);
 
 		if (detalle != null) {
 			respuesta.setCodigo(1);

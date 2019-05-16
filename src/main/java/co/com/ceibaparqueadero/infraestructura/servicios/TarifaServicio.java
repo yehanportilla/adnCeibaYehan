@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
 import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
-import co.com.ceibaparqueadero.infraestructura.entidades.Tarifa;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
 
 @RestController
 @RequestMapping("/api")
@@ -28,7 +28,7 @@ public class TarifaServicio {
 	 * @return
 	 */
 	@GetMapping("listartarifas")
-	public List<Tarifa> listarTarifas() {
+	public List<TarifaEntidad> listarTarifas() {
 		return tarifaLogica.listarTarifa();
 	}
 
@@ -39,7 +39,7 @@ public class TarifaServicio {
 	 * @return
 	 */
 	@PostMapping("guardartarifa")
-	public Respuesta guardarTarifa(@Valid @RequestBody Tarifa detalleTarifa) {
+	public Respuesta guardarTarifa(@Valid @RequestBody TarifaEntidad detalleTarifa) {
 
 		return tarifaLogica.guardarTarifa(detalleTarifa);
 

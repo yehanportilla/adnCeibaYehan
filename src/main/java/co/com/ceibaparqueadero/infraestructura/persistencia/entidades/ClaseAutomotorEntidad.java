@@ -1,4 +1,4 @@
-package co.com.ceibaparqueadero.infraestructura.entidades;
+package co.com.ceibaparqueadero.infraestructura.persistencia.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,16 +11,16 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "estado")
-@EntityListeners(AuditingEntityListener.class)
-public class Estado {
+@Table(name = "clase_automotor")
+@EntityListeners(AuditingEntityListener.class) // para hacer auditoria
+public class ClaseAutomotorEntidad {
 
 	@Id
-	@Column(name = "ESTADO_ID")
+	@Column(name = "CLASE_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "ESTADO_NOMBRE")
+	@Column(name = "CLASE_NOMBRE")
 	private String nombre;
 
 	public Long getId() {
@@ -39,6 +39,14 @@ public class Estado {
 		this.nombre = nombre;
 	}
 
-    
+	// constructor para clase builder
+	public ClaseAutomotorEntidad(Long id, String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+	}
+
+	// para que no afecte al listar las clases
+	public ClaseAutomotorEntidad() {
+	}
 
 }

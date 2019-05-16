@@ -11,9 +11,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import co.com.ceibaparqueadero.dominio.dto.TiempoDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
-import co.com.ceibaparqueadero.infraestructura.entidades.Tiempo;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
 
 @RestController
 @RequestMapping("/api")
@@ -27,8 +28,8 @@ public class TiempoServicio {
 	 * 
 	 * @return
 	 */
-	@GetMapping("listatiempos")
-	public List<Tiempo> listarTiempo() {
+	@GetMapping("/tiempos")
+	public List<TiempoEntidad> listarTiempo() {
 		return tiempoLogica.listarTiempo();
 	}
 
@@ -38,10 +39,10 @@ public class TiempoServicio {
 	 * @param detalletiempo
 	 * @return
 	 */
-	@PostMapping("guardartiempo")
-	public Respuesta guardarTiempo(@Valid @RequestBody Tiempo detalletiempo) {
+	@PostMapping("/tiempos")
+	public TiempoDto guardarTiempo(@Valid @RequestBody TiempoDto tiempoDto) throws ParqueaderoExcepcion {
 
-		return tiempoLogica.guardarTiempo(detalletiempo);
+		return tiempoLogica.guardarTiempo(tiempoDto);
 
 	}
 

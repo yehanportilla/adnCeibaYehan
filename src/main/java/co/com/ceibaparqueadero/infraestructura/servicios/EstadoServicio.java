@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
-import co.com.ceibaparqueadero.infraestructura.entidades.Estado;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 
 @RestController
 @RequestMapping("/api")
@@ -28,7 +28,7 @@ public class EstadoServicio {
 	 * @return List<Estado>
 	 */
 	@GetMapping("listaestados")
-	public List<Estado> listarEstado() {
+	public List<EstadoEntidad> listarEstado() {
 		return estadoLogica.listarEstado();
 	}
 
@@ -39,7 +39,7 @@ public class EstadoServicio {
 	 * @return
 	 */
 	@PostMapping("guardarestado")
-	public Respuesta guardarEstado(@Valid @RequestBody Estado detalleEstado) {
+	public Respuesta guardarEstado(@Valid @RequestBody EstadoEntidad detalleEstado) {
 
 		return estadoLogica.guardarEstado(detalleEstado);
 

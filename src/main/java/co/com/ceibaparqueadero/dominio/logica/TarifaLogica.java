@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
-import co.com.ceibaparqueadero.infraestructura.entidades.Tarifa;
-import co.com.ceibaparqueadero.infraestructura.entidades.Tiempo;
-import co.com.ceibaparqueadero.infraestructura.repositorios.ClaseAutomotorRepositorio;
-import co.com.ceibaparqueadero.infraestructura.repositorios.TarifaRepositorio;
-import co.com.ceibaparqueadero.infraestructura.repositorios.TiempoRepositorio;
-import co.com.ceibaparqueadero.infraestructura.entidades.ClaseAutomotor;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ClaseAutomotorRepositorio;
+import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
+import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoRepositorio;
 
 @RestController
 public class TarifaLogica {
@@ -34,7 +34,7 @@ public class TarifaLogica {
 	 * 
 	 * @return List<Tarifa>
 	 */
-	public List<Tarifa> listarTarifa() {
+	public List<TarifaEntidad> listarTarifa() {
 		return tarifaRepositorio.findAll();
 
 	}
@@ -42,25 +42,25 @@ public class TarifaLogica {
 	/**
 	 * Metodo encargado de guardar la tarifa
 	 * 
-	 * @param tarifa
+	 * @param tarifaEntidad
 	 * @return
 	 */
-	public Respuesta guardarTarifa(@Valid @RequestBody Tarifa tarifa) {
+	public Respuesta guardarTarifa(@Valid @RequestBody TarifaEntidad tarifaEntidad) {
 
 		Respuesta respuesta = new Respuesta();
 
-		Optional<Tiempo> tiempoBD = tiempoRepositorio.findById(tarifa.getTiempo().getId());
-		Optional<ClaseAutomotor> claseBD = claseAutomotorRepositorio.findById(tarifa.getClaseAutomotor().getId());
+		Optional<TiempoEntidad> tiempoBD = tiempoRepositorio.findById(tarifaEntidad.getTiempo().getId());
+		Optional<ClaseAutomotorEntidad> claseBD = claseAutomotorRepositorio.findById(tarifaEntidad.getClaseAutomotor().getId());
 
 		if (tiempoBD.isPresent() && claseBD.isPresent()) {
 
-			Tiempo tiempo = tiempoBD.get();
-			tarifa.setTiempo(tiempo);
+			TiempoEntidad tiempoEntidad = tiempoBD.get();
+			tarifaEntidad.setTiempo(tiempoEntidad);
 
-			ClaseAutomotor claseAutomotor = claseBD.get();
-			tarifa.setClaseAutomotor(claseAutomotor);
+			ClaseAutomotorEntidad claseAutomotorEntidad = claseBD.get();
+			tarifaEntidad.setClaseAutomotor(claseAutomotorEntidad);
 
-			Tarifa tarifaGuardado = tarifaRepositorio.save(tarifa);
+			TarifaEntidad tarifaGuardado = tarifaRepositorio.save(tarifaEntidad);
 
 			if (tarifaGuardado != null) {
 

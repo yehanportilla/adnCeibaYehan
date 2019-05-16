@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
 import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
-import co.com.ceibaparqueadero.infraestructura.entidades.ClaseAutomotor;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 
 @RestController
 @RequestMapping("/api")
@@ -30,7 +30,7 @@ public class ClaseAutomotorServicio {
 	 * @return List<ClaseAutomotor>
 	 */
 	@GetMapping("listaclaseautomotor")
-	public List<ClaseAutomotor> listaClases() {
+	public List<ClaseAutomotorEntidad> listaClases() {
 
 		return claseAutomotorLogica.listarClases();
 
@@ -42,7 +42,7 @@ public class ClaseAutomotorServicio {
 	 * @param detalleClase
 	 */
     @PostMapping("guardarclasevehiculo")
-    public Respuesta guardarClaseVehiculo(@Valid @RequestBody ClaseAutomotor detalleClase) {
+    public Respuesta guardarClaseVehiculo(@Valid @RequestBody ClaseAutomotorEntidad detalleClase) {
     	
     	return claseAutomotorLogica.guardarClaseAutomor(detalleClase);
     	  		

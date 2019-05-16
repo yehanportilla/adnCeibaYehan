@@ -1,4 +1,4 @@
-package co.com.ceibaparqueadero.infraestructura.entidades;
+package co.com.ceibaparqueadero.infraestructura.persistencia.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,16 +11,16 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "tiempo")
+@Table(name = "estado")
 @EntityListeners(AuditingEntityListener.class)
-public class Tiempo {
+public class EstadoEntidad {
 
 	@Id
-	@Column(name = "TIEMPO_ID")
+	@Column(name = "ESTADO_ID")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(name = "TIEMPO_NOMBRE")
+	@Column(name = "ESTADO_NOMBRE")
 	private String nombre;
 
 	public Long getId() {
@@ -39,6 +39,6 @@ public class Tiempo {
 		this.nombre = nombre;
 	}
 
-	
+    
 
 }

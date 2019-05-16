@@ -1,6 +1,6 @@
 package co.com.ceibaparqueadero.tesintegracion;
 
-import co.com.ceibaparqueadero.infraestructura.entidades.ClaseAutomotor;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 
 public class ClaseAutomotorBuilder {
 
@@ -23,8 +23,8 @@ public class ClaseAutomotorBuilder {
 	}
 
 	// nombre del constructor de la clase ClaseAutomotor
-	public ClaseAutomotor build() {
-		return new ClaseAutomotor(id, nombre);
+	public ClaseAutomotorEntidad build() {
+		return new ClaseAutomotorEntidad(id, nombre);
 	}
 
 	public static ClaseAutomotorBuilder anClaseAutomotor() {

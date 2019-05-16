@@ -2,18 +2,19 @@ package co.com.ceibaparqueadero.dominio.logica;
 
 import java.util.List;
 
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
-import co.com.ceibaparqueadero.infraestructura.entidades.Tiempo;
-import co.com.ceibaparqueadero.infraestructura.repositorios.TiempoRepositorio;
+import co.com.ceibaparqueadero.dominio.dto.TiempoDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TiempoBuilder;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoRepositorio;
 
 @RestController
 public class TiempoLogica {
+	
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 
 	@Autowired
 	TiempoRepositorio tiempoRepositorio;
@@ -23,34 +24,26 @@ public class TiempoLogica {
 	 * 
 	 * @return List<Tiempo>
 	 */
-	public List<Tiempo> listarTiempo() {
+	public List<TiempoEntidad> listarTiempo() {
 		return tiempoRepositorio.findAll();
-
 	}
-	
-	
-	 /**
-	  * Metodo encargado de guardar el tiempo
-	  * @param detalleTiempo
-	  * @return
-	  */
 
-	public Respuesta guardarTiempo(@Valid @RequestBody Tiempo detalleTiempo) {
+	/**
+	 * Metodo encargado de guardar el tiempo
+	 * 
+	 * @param detalleTiempo
+	 * @return
+	 */
+	public TiempoDto guardarTiempo(TiempoDto tiempoDto) throws ParqueaderoExcepcion {
 
-		Respuesta respuesta = new Respuesta();
+		TiempoEntidad creaTiempo = tiempoRepositorio.save(TiempoBuilder.convertirAEntidad(tiempoDto));
 
-		Tiempo detalle = tiempoRepositorio.save(detalleTiempo);
+		if (creaTiempo == null) {
 
-		if (detalle != null) {
-			respuesta.setCodigo(1);
-			respuesta.setMensaje("Tiempo: Registrado Exitosamente !");
-			respuesta.setTiempo(detalle);
-		} else {
-			respuesta.setCodigo(0);
-			respuesta.setMensaje("Error: Al Registrar!");
+			throw new ParqueaderoExcepcion(MENSAJE_ERROR);
 		}
 
-		return respuesta;
+		return tiempoDto;
 
 	}
 

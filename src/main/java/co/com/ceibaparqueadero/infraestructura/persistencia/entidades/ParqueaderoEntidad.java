@@ -1,4 +1,4 @@
-package co.com.ceibaparqueadero.infraestructura.entidades;
+package co.com.ceibaparqueadero.infraestructura.persistencia.entidades;
 
 import java.util.Date;
 
@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Parqueadero {
+public class ParqueaderoEntidad {
 
 	@Entity
 	@Table(name = "parqueo")
@@ -46,11 +46,11 @@ public class Parqueadero {
 
 		@ManyToOne
 		@JoinColumn(name = "CLASE_ID")
-		private ClaseAutomotor claseAutomotor;
+		private ClaseAutomotorEntidad claseAutomotorEntidad;
 
 		@ManyToOne
 		@JoinColumn(name = "ESTADO_ID")
-		private Estado estado;
+		private EstadoEntidad estadoEntidad;
 
 		public Long getId() {
 			return id;
@@ -100,20 +100,20 @@ public class Parqueadero {
 			this.valor = valor;
 		}
 
-		public ClaseAutomotor getClaseAutomotor() {
-			return claseAutomotor;
+		public ClaseAutomotorEntidad getClaseAutomotor() {
+			return claseAutomotorEntidad;
 		}
 
-		public void setClaseAutomotor(ClaseAutomotor claseAutomotor) {
-			this.claseAutomotor = claseAutomotor;
+		public void setClaseAutomotor(ClaseAutomotorEntidad claseAutomotorEntidad) {
+			this.claseAutomotorEntidad = claseAutomotorEntidad;
 		}
 
-		public Estado getEstado() {
-			return estado;
+		public EstadoEntidad getEstado() {
+			return estadoEntidad;
 		}
 
-		public void setEstado(Estado estado) {
-			this.estado = estado;
+		public void setEstado(EstadoEntidad estadoEntidad) {
+			this.estadoEntidad = estadoEntidad;
 		}
 
 	}
