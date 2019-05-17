@@ -23,6 +23,15 @@ public class EstadoEntidad {
 	@Column(name = "ESTADO_NOMBRE")
 	private String nombre;
 
+	public EstadoEntidad() {
+
+	}
+
+	public EstadoEntidad(Long id, String nombre) {
+		this.id = id;
+		this.nombre = nombre;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -38,7 +47,5 @@ public class EstadoEntidad {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-
-    
-
+	
 }

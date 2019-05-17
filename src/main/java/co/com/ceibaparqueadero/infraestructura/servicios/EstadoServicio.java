@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import co.com.ceibaparqueadero.dominio.dto.EstadoDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 
@@ -27,7 +28,7 @@ public class EstadoServicio {
 	 * 
 	 * @return List<Estado>
 	 */
-	@GetMapping("listaestados")
+	@GetMapping("/estados")
 	public List<EstadoEntidad> listarEstado() {
 		return estadoLogica.listarEstado();
 	}
@@ -38,10 +39,10 @@ public class EstadoServicio {
 	 * @param detalleEstado
 	 * @return
 	 */
-	@PostMapping("guardarestado")
-	public Respuesta guardarEstado(@Valid @RequestBody EstadoEntidad detalleEstado) {
+	@PostMapping("/estados")
+	public EstadoDto guardarEstado(@Valid @RequestBody EstadoDto estadoDto) throws ParqueaderoExcepcion {
 
-		return estadoLogica.guardarEstado(detalleEstado);
+		return estadoLogica.guardarEstado(estadoDto);
 
 	}
 

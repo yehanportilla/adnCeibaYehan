@@ -1,7 +1,7 @@
 package co.com.ceibaparqueadero.dominio.logica;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,7 +13,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoR
 
 @RestController
 public class TiempoLogica {
-	
+
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 
 	@Autowired
@@ -44,6 +44,18 @@ public class TiempoLogica {
 		}
 
 		return tiempoDto;
+
+	}
+
+	/**
+	 * Metodo encargado de buscar tiempo por id
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Optional<TiempoEntidad> buscarPorIdTiempo(Long id) {
+
+		return tiempoRepositorio.findById(id);
 
 	}
 

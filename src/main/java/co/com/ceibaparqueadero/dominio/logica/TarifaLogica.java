@@ -3,13 +3,12 @@ package co.com.ceibaparqueadero.dominio.logica;
 import java.util.List;
 import java.util.Optional;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TarifaBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
@@ -20,6 +19,8 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoR
 @RestController
 public class TarifaLogica {
 
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
+
 	@Autowired
 	TarifaRepositorio tarifaRepositorio;
 
@@ -29,6 +30,12 @@ public class TarifaLogica {
 	@Autowired
 	ClaseAutomotorRepositorio claseAutomotorRepositorio;
 
+	@Autowired
+	TiempoLogica tiempoLogica;
+
+	@Autowired
+	ClaseAutomotorLogica claseAutomotorLogica;
+
 	/**
 	 * Metodo encargado de listar las tarifas
 	 * 
@@ -36,7 +43,6 @@ public class TarifaLogica {
 	 */
 	public List<TarifaEntidad> listarTarifa() {
 		return tarifaRepositorio.findAll();
-
 	}
 
 	/**
@@ -45,38 +51,27 @@ public class TarifaLogica {
 	 * @param tarifaEntidad
 	 * @return
 	 */
-	public Respuesta guardarTarifa(@Valid @RequestBody TarifaEntidad tarifaEntidad) {
 
-		Respuesta respuesta = new Respuesta();
+	public TarifaDto guardarTarifa(TarifaDto tarifaDto) throws ParqueaderoExcepcion {
 
-		Optional<TiempoEntidad> tiempoBD = tiempoRepositorio.findById(tarifaEntidad.getTiempo().getId());
-		Optional<ClaseAutomotorEntidad> claseBD = claseAutomotorRepositorio.findById(tarifaEntidad.getClaseAutomotor().getId());
+		Optional<TiempoEntidad> tiempo = tiempoLogica.buscarPorIdTiempo(tarifaDto.getTiempoEntidad().getId());
 
-		if (tiempoBD.isPresent() && claseBD.isPresent()) {
+		Optional<ClaseAutomotorEntidad> clase = claseAutomotorLogica.buscarPorIdClase(tarifaDto.getClaseAutomotorEntidad().getId());
 
-			TiempoEntidad tiempoEntidad = tiempoBD.get();
-			tarifaEntidad.setTiempo(tiempoEntidad);
+		if (tiempo.isPresent() && clase.isPresent()) {
 
-			ClaseAutomotorEntidad claseAutomotorEntidad = claseBD.get();
-			tarifaEntidad.setClaseAutomotor(claseAutomotorEntidad);
+			TiempoEntidad tiempoEntidad = tiempo.get();
+			tarifaDto.setTiempoEntidad(tiempoEntidad);
 
-			TarifaEntidad tarifaGuardado = tarifaRepositorio.save(tarifaEntidad);
+			ClaseAutomotorEntidad claseAutomotorEntidad = clase.get();
+			tarifaDto.setClaseAutomotorEntidad(claseAutomotorEntidad);
 
-			if (tarifaGuardado != null) {
+			TarifaEntidad creaTarifa = tarifaRepositorio.save(TarifaBuilder.convertirAEntidad(tarifaDto));
 
-				respuesta.setCodigo(0);
-				respuesta.setMensaje("Tarifa: Registrada Exitosamente !");
-			} else {
-				respuesta.setCodigo(1);
-				respuesta.setMensaje("Error: Alguardar Tarifa !");
+			if (creaTarifa == null) {
+				throw new ParqueaderoExcepcion(MENSAJE_ERROR);
 			}
-		} else {
-			respuesta.setCodigo(0);
-			respuesta.setMensaje("Error: Clase ó Tiempo no existen  !");
 		}
-
-		return respuesta;
-
+		return tarifaDto;
 	}
-
 }

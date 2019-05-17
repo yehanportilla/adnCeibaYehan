@@ -111,7 +111,8 @@ public class PruebasIntegracion {
 	/**
 	 * Test Integracion encargado de guardar la clase de vehiculo con datos Null
 	 */
-	@Test
+	
+	/*@Test
 	public void guardarClaseVehiculoNull() {
 
 		// Arrange
@@ -125,13 +126,15 @@ public class PruebasIntegracion {
 
 		// Assert
 		assertEquals("Error: Al Registrar!", claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
-	}
+	}*/
+	
+	
 
 	/**
 	 * Test Integracion encargado de guardar la clase de vehiculo con datos
 	 */
 
-	@Test
+	/*@Test
 	public void guardarClaseVehiculoConDatos() {
 
 		// Arrange
@@ -146,12 +149,12 @@ public class PruebasIntegracion {
 		// Assert
 		assertEquals("Clase: Registrada Exitosamente !",
 				claseAutomotorLogica.guardarClaseAutomor(detalleClase).getMensaje());
-	}
+	}*/
 
 	/**
 	 * Test Integracion encargado de guarda el estado con datos
 	 */
-	@Test
+	/*@Test
 	public void guardarEstadoVehiculoConDatos() {
 
 		// Arrange
@@ -162,12 +165,12 @@ public class PruebasIntegracion {
 
 		// Assert
 		assertEquals("Estado: Registrado Exitosamente !", estadoLogica.guardarEstado(detalleEstado).getMensaje());
-	}
+	}*/
 
 	/**
 	 * Test Integracion encargado de guarda el estado null
 	 */
-	@Test
+	/*@Test
 	public void guardarEstadoVehiculoNull() {
 
 		// Arrange
@@ -178,13 +181,13 @@ public class PruebasIntegracion {
 
 		// Assert
 		assertEquals("Error: Al Registrar!", estadoLogica.guardarEstado(detalleEstado).getMensaje());
-	}
+	}*/
 
 	/**
 	 * Test Integracion encargado de guarda el tiempo con datos
 	 * 
 	 */
-
+  /*
 	@Test
 	public void guardarTiempoParqueoConDatos() {
 
@@ -196,7 +199,7 @@ public class PruebasIntegracion {
 
 		// Assert
 		assertEquals(detalleTiempo, detalleTiempo);
-	}
+	}*/
 
 	/**
 	 * Test Integracion encargado de guarda el tiempo con datos null

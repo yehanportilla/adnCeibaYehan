@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import co.com.ceibaparqueadero.dominio.dto.ClaseAutomotorDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 
@@ -21,31 +22,30 @@ public class ClaseAutomotorServicio {
 
 	@Autowired
 	ClaseAutomotorLogica claseAutomotorLogica;
-	
-	
 
 	/**
 	 * Servicio en cargado de consultar clase de vehiculo
 	 * 
 	 * @return List<ClaseAutomotor>
 	 */
-	@GetMapping("listaclaseautomotor")
+	@GetMapping("/clases")
 	public List<ClaseAutomotorEntidad> listaClases() {
 
 		return claseAutomotorLogica.listarClases();
 
 	}
-	
-	
+
 	/**
 	 * Servicio encargado de guardar clase automotor
+	 * 
 	 * @param detalleClase
 	 */
-    @PostMapping("guardarclasevehiculo")
-    public Respuesta guardarClaseVehiculo(@Valid @RequestBody ClaseAutomotorEntidad detalleClase) {
-    	
-    	return claseAutomotorLogica.guardarClaseAutomor(detalleClase);
-    	  		
-    }
+	@PostMapping("/clases")
+	public ClaseAutomotorDto guardarClaseVehiculo(@Valid @RequestBody ClaseAutomotorDto claseAutomotorDto)
+			throws ParqueaderoExcepcion {
+
+		return claseAutomotorLogica.guardarClaseAutomor(claseAutomotorDto);
+
+	}
 
 }

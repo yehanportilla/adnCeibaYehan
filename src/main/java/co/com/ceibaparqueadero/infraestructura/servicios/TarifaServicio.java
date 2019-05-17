@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
 
@@ -27,7 +28,7 @@ public class TarifaServicio {
 	 * 
 	 * @return
 	 */
-	@GetMapping("listartarifas")
+	@GetMapping("/tarifas")
 	public List<TarifaEntidad> listarTarifas() {
 		return tarifaLogica.listarTarifa();
 	}
@@ -38,11 +39,11 @@ public class TarifaServicio {
 	 * @param detalleTarifa
 	 * @return
 	 */
-	@PostMapping("guardartarifa")
-	public Respuesta guardarTarifa(@Valid @RequestBody TarifaEntidad detalleTarifa) {
 
-		return tarifaLogica.guardarTarifa(detalleTarifa);
+	@PostMapping("/tarifas")
+	public TarifaDto guardarTarifa(@Valid @RequestBody TarifaDto tarifaDto) throws ParqueaderoExcepcion {
 
+		return tarifaLogica.guardarTarifa(tarifaDto);
 	}
 
 }

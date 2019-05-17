@@ -2,18 +2,18 @@ package co.com.ceibaparqueadero.dominio.logica;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import co.com.ceibaparqueadero.dominio.dto.EstadoDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.EstadoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.EstadoRepositorio;
 
 @RestController
 public class EstadoLogica {
+
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 
 	@Autowired
 	EstadoRepositorio estadoRepositorio;
@@ -33,23 +33,14 @@ public class EstadoLogica {
 	 * @param detalleEstado
 	 * @return
 	 */
-	public Respuesta guardarEstado(@Valid @RequestBody EstadoEntidad detalleEstado) {
+	public EstadoDto guardarEstado(EstadoDto estadoDto) throws ParqueaderoExcepcion {
 
-		Respuesta respuesta = new Respuesta();
+		EstadoEntidad creaEstado = estadoRepositorio.save(EstadoBuilder.convertirAEntidad(estadoDto));
 
-		EstadoEntidad detalle = estadoRepositorio.save(detalleEstado);
-
-		if (detalle != null) {
-			respuesta.setCodigo(1);
-			respuesta.setMensaje("Estado: Registrado Exitosamente !");
-			respuesta.setEstado(detalle);
-
-		} else {
-			respuesta.setCodigo(0);
-			respuesta.setMensaje("Error: Al Registrar!");
+		if (creaEstado == null) {
+			throw new ParqueaderoExcepcion(MENSAJE_ERROR);
 		}
-
-		return respuesta;
+		return estadoDto;
 
 	}
 

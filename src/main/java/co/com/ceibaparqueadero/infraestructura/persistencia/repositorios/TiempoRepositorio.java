@@ -2,8 +2,6 @@ package co.com.ceibaparqueadero.infraestructura.persistencia.repositorios;
 
 import java.util.Optional;
 
-//import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

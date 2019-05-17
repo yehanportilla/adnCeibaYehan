@@ -1,19 +1,20 @@
 package co.com.ceibaparqueadero.dominio.logica;
 
 import java.util.List;
-
-import javax.validation.Valid;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import co.com.ceibaparqueadero.dominio.dto.ClaseAutomotorDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ClaseAutomotorBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ClaseAutomotorRepositorio;
 
 @RestController
 public class ClaseAutomotorLogica {
+
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 
 	@Autowired
 	ClaseAutomotorRepositorio claseAutomotorRepositorio;
@@ -34,22 +35,28 @@ public class ClaseAutomotorLogica {
 	 * @param claseAutomotor
 	 * @return
 	 */
-	public Respuesta guardarClaseAutomor(@Valid @RequestBody ClaseAutomotorEntidad detalleClase) {
+	public ClaseAutomotorDto guardarClaseAutomor(ClaseAutomotorDto claseAutomotorDto) throws ParqueaderoExcepcion {
 
-		Respuesta respuesta = new Respuesta();
+		ClaseAutomotorEntidad creaClase = claseAutomotorRepositorio
+				.save(ClaseAutomotorBuilder.convertirAEntidad(claseAutomotorDto));
 
-		ClaseAutomotorEntidad claseAuto = claseAutomotorRepositorio.save(detalleClase);
+		if (creaClase == null) {
 
-		if (claseAuto != null) {
-			respuesta.setCodigo(1);
-			respuesta.setMensaje("Clase: Registrada Exitosamente !");
-			respuesta.setClaseAutomotor(claseAuto);
-		} else {
-			respuesta.setCodigo(0);
-			respuesta.setMensaje("Error: Al Registrar!");
+			throw new ParqueaderoExcepcion(MENSAJE_ERROR);
 		}
+		return claseAutomotorDto;
 
-		return respuesta;
+	}
+
+	/**
+	 * Metodo encargado de consultar
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public Optional<ClaseAutomotorEntidad> buscarPorIdClase(Long id) {
+
+		return claseAutomotorRepositorio.findById(id);
 
 	}
 

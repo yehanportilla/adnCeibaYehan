@@ -25,7 +25,6 @@ public class TiempoBuilder {
 	/*
 	 * Metodo encargado de convertir de entidad a dto
 	 */
-
 	public static TiempoEntidad convertirAEntidad(TiempoDto tiempoDto) {
 
 		TiempoEntidad tiempoEntidad = null;

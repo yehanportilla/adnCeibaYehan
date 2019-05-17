@@ -33,6 +33,17 @@ public class TarifaEntidad {
 	@JoinColumn(name = "TIEMPO_ID")
 	private TiempoEntidad tiempoEntidad;
 
+	public TarifaEntidad() {
+
+	}
+
+	public TarifaEntidad(Long id, Double valor, ClaseAutomotorEntidad claseAutomotorEntidad,TiempoEntidad tiempoEntidad) {
+		this.id = id;
+		this.valor = valor;
+		this.claseAutomotorEntidad = claseAutomotorEntidad;
+		this.tiempoEntidad = tiempoEntidad;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -49,20 +60,20 @@ public class TarifaEntidad {
 		this.valor = valor;
 	}
 
-	public ClaseAutomotorEntidad getClaseAutomotor() {
+	public ClaseAutomotorEntidad getClaseAutomotorEntidad() {
 		return claseAutomotorEntidad;
 	}
 
-	public void setClaseAutomotor(ClaseAutomotorEntidad claseAutomotorEntidad) {
+	public void setClaseAutomotorEntidad(ClaseAutomotorEntidad claseAutomotorEntidad) {
 		this.claseAutomotorEntidad = claseAutomotorEntidad;
 	}
 
-	public TiempoEntidad getTiempo() {
+	public TiempoEntidad getTiempoEntidad() {
 		return tiempoEntidad;
 	}
 
-	public void setTiempo(TiempoEntidad tiempoEntidad) {
+	public void setTiempoEntidad(TiempoEntidad tiempoEntidad) {
 		this.tiempoEntidad = tiempoEntidad;
 	}
-
+	
 }
