@@ -87,7 +87,7 @@ public class ValidacionParqueaderoLogica {
 
 		int diaSemanaActual = obtenerDia();
 
-		if (LETRA == numPlaca.charAt(0) && Calendar.SUNDAY != diaSemanaActual || Calendar.MONDAY == diaSemanaActual) {
+		if (LETRA == numPlaca.charAt(0) && Calendar.SUNDAY != diaSemanaActual || Calendar.MONDAY != diaSemanaActual) {
 
 			throw new ParqueaderoExcepcion(MENSAJE_PLACA);
 		}
