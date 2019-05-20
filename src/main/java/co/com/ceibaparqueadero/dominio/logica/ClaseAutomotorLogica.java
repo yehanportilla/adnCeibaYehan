@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import co.com.ceibaparqueadero.dominio.dto.ClaseAutomotorDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ClaseAutomotorBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ClaseAutomotorRepositorio;
 
-@RestController
+@Service
 public class ClaseAutomotorLogica {
 
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
