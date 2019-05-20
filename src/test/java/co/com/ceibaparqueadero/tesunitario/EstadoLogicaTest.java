@@ -1,6 +1,7 @@
 package co.com.ceibaparqueadero.tesunitario;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,26 +11,27 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.EstadoRepositorio;
 
 public class EstadoLogicaTest {
-	
+
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
+
 	@Mock
 	private EstadoRepositorio estadoRepositorio;
-	
+
 	@InjectMocks
 	EstadoLogica estadoLogica;
-	
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	/**
-	 * Test Integracion encargado de listar los estados de vehiculo
+	 * Test encargado de listar los estados de vehiculo
 	 */
 	@Test
 	public void listarEstados() {
@@ -42,6 +44,30 @@ public class EstadoLogicaTest {
 
 		// Assert
 		assertEquals(esperado, estadoEntidad);
+	}
+
+	/**
+	 * Test Integracion encargado de guarda el estado null
+	 */
+	@Test
+	public void guardarEstadoParqueoNull() {
+
+		// Arrange
+		EstadoEntidad detalleEstado = EstadoNull();
+
+		try {
+			// Act
+			when(estadoRepositorio.save(detalleEstado)).thenReturn(null);
+
+		} catch (Exception e) {
+			// Assert
+			assertEquals(MENSAJE_ERROR, e.getMessage());
+		}
+
+	}
+
+	private EstadoEntidad EstadoNull() {
+		return null;
 	}
 
 }
