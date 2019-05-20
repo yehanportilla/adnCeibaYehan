@@ -4,14 +4,14 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import co.com.ceibaparqueadero.dominio.dto.TiempoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TiempoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoRepositorio;
 
-@RestController
+@Service
 public class TiempoLogica {
 
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";

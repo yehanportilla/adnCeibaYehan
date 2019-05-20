@@ -4,7 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
+
 
 import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
@@ -16,7 +17,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ClaseAu
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoRepositorio;
 
-@RestController
+@Service
 public class TarifaLogica {
 
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";

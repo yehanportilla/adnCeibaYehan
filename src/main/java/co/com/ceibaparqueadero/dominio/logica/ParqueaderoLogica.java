@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import co.com.ceibaparqueadero.dominio.dto.ParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ParqueaderoBuilder;
@@ -12,7 +12,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.Parqueader
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
 
 
-@RestController
+@Service
 public class ParqueaderoLogica {
 
 	@Autowired

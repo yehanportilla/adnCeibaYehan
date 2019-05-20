@@ -3,14 +3,14 @@ package co.com.ceibaparqueadero.dominio.logica;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import co.com.ceibaparqueadero.dominio.dto.EstadoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.EstadoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.EstadoRepositorio;
 
-@RestController
+@Service
 public class EstadoLogica {
 
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
