@@ -50,7 +50,7 @@ public class ClaseAutomotorServicioTest {
 	
 	
 	 @Test
-	 public void register() throws ParqueaderoExcepcion{ 
+	 public void guardarClaseServicio() throws ParqueaderoExcepcion{ 
 	 try {	 
 	 this.mvc.perform(post("/api/clases")
 	 .characterEncoding("utf-8")
