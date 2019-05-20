@@ -41,8 +41,7 @@ public class ClaseAutomotorServicio {
 	 * @param detalleClase
 	 */
 	@PostMapping("/clases")
-	public ClaseAutomotorDto guardarClaseVehiculo(@Valid @RequestBody ClaseAutomotorDto claseAutomotorDto)
-			throws ParqueaderoExcepcion {
+	public ClaseAutomotorDto guardarClaseVehiculo(@Valid @RequestBody ClaseAutomotorDto claseAutomotorDto) throws ParqueaderoExcepcion {
 
 		return claseAutomotorLogica.guardarClaseAutomor(claseAutomotorDto);
 
