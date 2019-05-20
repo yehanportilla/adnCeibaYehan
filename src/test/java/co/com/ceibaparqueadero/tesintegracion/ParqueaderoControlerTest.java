@@ -47,7 +47,7 @@ public class ParqueaderoControlerTest {
 		
 	}
 	
-	 @Test
+	 /*@Test
 	 public void guardarRegistroAutomotor() throws ParqueaderoExcepcion{ 
 	 try {	 
 	 this.mvc.perform(post("/api/registros")
@@ -57,6 +57,6 @@ public class ParqueaderoControlerTest {
 	 }catch(Exception e) {
 		 throw new ParqueaderoExcepcion("Dato no registrado");
 	 }	 
-	 }
+	 }*/
 
 }

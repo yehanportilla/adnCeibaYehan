@@ -4,7 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
+
 
 import co.com.ceibaparqueadero.dominio.dto.TiempoParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
@@ -12,7 +13,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.Parquea
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
 
 
-@RestController
+@Service
 public class ValidacionParqueaderoLogica {
 
 	private static final Character LETRA = 'A';
