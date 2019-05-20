@@ -37,8 +37,7 @@ public class ClaseAutomotorLogica {
 	 */
 	public ClaseAutomotorDto guardarClaseAutomor(ClaseAutomotorDto claseAutomotorDto) throws ParqueaderoExcepcion {
 
-		ClaseAutomotorEntidad creaClase = claseAutomotorRepositorio
-				.save(ClaseAutomotorBuilder.convertirAEntidad(claseAutomotorDto));
+		ClaseAutomotorEntidad creaClase = claseAutomotorRepositorio.save(ClaseAutomotorBuilder.convertirAEntidad(claseAutomotorDto));
 
 		if (creaClase == null) {
 

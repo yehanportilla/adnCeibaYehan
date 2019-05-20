@@ -2,7 +2,6 @@ package co.com.ceibaparqueadero.dominio.dto;
 
 import java.util.Date;
 
-
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 
@@ -23,7 +22,6 @@ public class ParqueaderoDto {
 
 	public ParqueaderoDto(Long id, String placa, Long cilindraje, Date fechaRegistro, Date fechaSalida, Double valor,
 			ClaseAutomotorEntidad claseAutomotorEntidad, EstadoEntidad estadoEntidad) {
-		super();
 		this.id = id;
 		this.placa = placa;
 		this.cilindraje = cilindraje;

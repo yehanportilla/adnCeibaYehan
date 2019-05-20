@@ -1,12 +1,16 @@
 package co.com.ceibaparqueadero.dominio.logica;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import co.com.ceibaparqueadero.dominio.exepciones.Respuesta;
+import org.springframework.web.bind.annotation.RestController;
 
-public class CalculaTiempoParqueaderoLogica {
+import co.com.ceibaparqueadero.dominio.dto.TiempoParqueaderoDto;
+
+@RestController
+public final class CalculaTiempoParqueaderoLogica {
+	
+	private CalculaTiempoParqueaderoLogica() {}
 
 	/**
 	 * Metodo encargado de calcular el tiempo
@@ -16,46 +20,38 @@ public class CalculaTiempoParqueaderoLogica {
 	 * @return
 	 * @throws ParseException
 	 */
-	public Respuesta calcularTiempoParqueadero(String fechaRegistro, String fechaSalida) throws ParseException {
-
-		Respuesta respuesta = new Respuesta();
-
-		Date fechaInicial = new SimpleDateFormat("yyyy-MM-dd H:m:s").parse(fechaRegistro);
-		Date fechaFinal = new SimpleDateFormat("yyyy-MM-dd H:m:s").parse(fechaSalida);
+	public static TiempoParqueaderoDto calcularTiempoParqueadero(Date fechaInicial, Date fechaFinal){
 
 		int diferencia = (int) ((fechaFinal.getTime() - fechaInicial.getTime()) / 1000);
 
 		int dias = 0;
 		int horas = 0;
 		int minutos = 0;
-		int sec = 86400;
-		int seg = 3600;
-		int min = 60;
+		int segundosPorDia = 86400;
+		int segundosPorHora = 3600;
+		int minutosPorHora = 60;
 
-		if (diferencia > sec) {
+		if (diferencia > segundosPorDia) {
 
-			double dia = (diferencia / 86400);
+			double dia = (diferencia / segundosPorDia);
 			dias = (int) Math.floor(dia);
-			diferencia = diferencia - (dias * 86400);
+			diferencia = diferencia - (dias * segundosPorDia);
 		}
-		if (diferencia > seg) {
+		if (diferencia > segundosPorHora) {
 
-			double hora = (diferencia / 3600);
+			double hora = (diferencia / segundosPorHora);
 			horas = (int) Math.floor(hora);
 
-			diferencia = diferencia - (horas * 3600);
+			diferencia = diferencia - (horas * segundosPorHora);
 		}
-		if (diferencia > min) {
+		if (diferencia > minutosPorHora) {
 
-			double minuto = (diferencia / 60);
+			double minuto = (diferencia / minutosPorHora);
 			minutos = (int) Math.floor(minuto);
-			diferencia = diferencia - (minutos * 60);
+			diferencia = diferencia - (minutos * minutosPorHora);
 		}
-		respuesta.setCodigo(0);
-		respuesta.setMensaje("Hay " + dias + " dias, " + horas + " horas, " + minutos + " minutos y " + diferencia
-				+ " segundos de diferencia");
 
-		return respuesta;
+		return new TiempoParqueaderoDto(dias, horas, minutos, diferencia);
 
 	}
 
