@@ -1,7 +1,8 @@
 package co.com.ceibaparqueadero.tesunitario;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.assertNull;
+
 
 import java.util.Arrays;
 import java.util.List;
@@ -17,7 +18,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.EstadoR
 
 public class EstadoLogicaTest {
 
-	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
+
 
 	@Mock
 	private EstadoRepositorio estadoRepositorio;
@@ -55,14 +56,11 @@ public class EstadoLogicaTest {
 		// Arrange
 		EstadoEntidad detalleEstado = EstadoNull();
 
-		try {
-			// Act
-			when(estadoRepositorio.save(detalleEstado)).thenReturn(null);
+		// Act
+		EstadoEntidad creaEstado = estadoRepositorio.save(detalleEstado);
 
-		} catch (Exception e) {
-			// Assert
-			assertEquals(MENSAJE_ERROR, e.getMessage());
-		}
+		// Assert
+		assertNull(creaEstado);
 
 	}
 
