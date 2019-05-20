@@ -3,7 +3,6 @@ package co.com.ceibaparqueadero.tesunitario;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,13 +11,16 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import co.com.ceibaparqueadero.dominio.dto.EstadoDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.EstadoRepositorio;
 
 public class EstadoLogicaTest {
 
-
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 
 	@Mock
 	private EstadoRepositorio estadoRepositorio;
@@ -49,23 +51,25 @@ public class EstadoLogicaTest {
 
 	/**
 	 * Test Integracion encargado de guarda el estado null
+	 * 
+	 * @throws ParqueaderoExcepcion
 	 */
 	@Test
-	public void guardarEstadoParqueoNull() {
+	public void guardarEstadoParqueoNull() throws ParqueaderoExcepcion {
 
 		// Arrange
-		EstadoEntidad detalleEstado = EstadoNull();
+		EstadoDto detalleEstado = new EstadoDto();
 
-		// Act
-		EstadoEntidad creaEstado = estadoRepositorio.save(detalleEstado);
+		try {
+			// Act
+			estadoLogica.guardarEstado(detalleEstado);
 
-		// Assert
-		assertNull(creaEstado);
+		} catch (ParqueaderoExcepcion e) {
+			// Assert
+			assertEquals(MENSAJE_ERROR, e.getMessage());
 
-	}
+		}
 
-	private EstadoEntidad EstadoNull() {
-		return null;
 	}
 
 }
