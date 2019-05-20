@@ -47,16 +47,16 @@ public class ParqueaderoControlerTest {
 		
 	}
 	
-	 /*@Test
-	 public void guardarRegistroAutomotor() throws ParqueaderoExcepcion{ 
+	@Test
+	 public void guardarRegistroServicio() throws ParqueaderoExcepcion{ 
 	 try {	 
 	 this.mvc.perform(post("/api/registros")
 	 .characterEncoding("utf-8")
-	 .content("{\"placa\":\"LLL123\",\"cilindraje\":650,\"claseAutomotorEntidad\":{\"id\":2},\"estadoEntidad\":{\"id\":1}}")
+	 .content("{\"placa\":\"BOO123\",\"cilindraje\":500,\"claseAutomotorEntidad\":{\"id\":2},\"estadoEntidad\":{\"id\":1}}")
 	 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isOk());
 	 }catch(Exception e) {
 		 throw new ParqueaderoExcepcion("Dato no registrado");
 	 }	 
-	 }*/
+	 }
 
 }

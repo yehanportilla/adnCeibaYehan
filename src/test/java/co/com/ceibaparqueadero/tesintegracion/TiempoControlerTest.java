@@ -58,6 +58,5 @@ public class TiempoControlerTest {
 		 throw new ParqueaderoExcepcion("Dato no registrado");
 	 }	 
 	 }
-	
 
 }
