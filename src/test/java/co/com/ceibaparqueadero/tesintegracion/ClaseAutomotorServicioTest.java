@@ -46,9 +46,5 @@ public class ClaseAutomotorServicioTest {
 	    .contentType(MediaType.APPLICATION_JSON)).andExpect(status().is2xxSuccessful());
 		
 	}
-	
-	
-
-	
 
 }

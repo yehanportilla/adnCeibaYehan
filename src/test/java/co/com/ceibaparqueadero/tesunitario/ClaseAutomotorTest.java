@@ -31,7 +31,7 @@ public class ClaseAutomotorTest {
 	/**
 	 * Test encargado de listar el tipo de automotor
 	 */
-	/*@Test
+	@Test
 	public void listarClaseAutomotor() {
 
 		// Arrange
@@ -42,5 +42,5 @@ public class ClaseAutomotorTest {
 
 		// Assert
 		assertEquals(esperado, claseAuto);
-	}*/
+	}
 }
