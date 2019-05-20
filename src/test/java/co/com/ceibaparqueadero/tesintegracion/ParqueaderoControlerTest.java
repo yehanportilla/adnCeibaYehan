@@ -52,7 +52,7 @@ public class ParqueaderoControlerTest {
 	 try {	 
 	 this.mvc.perform(post("/api/registros")
 	 .characterEncoding("utf-8")
-	 .content("{\"placa\":\"OOO123\",\"cilindraje\":650,\"claseAutomotorEntidad\":{\"id\":2},\"estadoEntidad\":{\"id\":1}}")
+	 .content("{\"placa\":\"LLL123\",\"cilindraje\":650,\"claseAutomotorEntidad\":{\"id\":2},\"estadoEntidad\":{\"id\":1}}")
 	 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().isOk());
 	 }catch(Exception e) {
 		 throw new ParqueaderoExcepcion("Dato no registrado");
