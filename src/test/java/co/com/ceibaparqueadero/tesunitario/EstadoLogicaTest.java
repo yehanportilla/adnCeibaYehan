@@ -47,7 +47,7 @@ public class EstadoLogicaTest {
 	}
 
 	/**
-	 * Test Integracion encargado de guarda el estado null
+	 * Test  encargado de enviar excepcion al no guardar informacion
 	 * 
 	 * @throws ParqueaderoExcepcion
 	 */

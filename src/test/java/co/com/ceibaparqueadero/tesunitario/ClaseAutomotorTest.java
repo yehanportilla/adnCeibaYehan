@@ -11,11 +11,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import co.com.ceibaparqueadero.dominio.dto.ClaseAutomotorDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ClaseAutomotorRepositorio;
 
 public class ClaseAutomotorTest {
+	
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 
 	@Mock
 	private ClaseAutomotorRepositorio claseAutomotorRepositorio;
@@ -43,4 +47,30 @@ public class ClaseAutomotorTest {
 		// Assert
 		assertEquals(esperado, claseAuto);
 	}
+	
+	
+	/**
+	 * Test  encargado de enviar excepcion al no guardar informacion
+	 * 
+	 * @throws ParqueaderoExcepcion
+	 */
+	@Test
+	public void guardarClaseNull() throws ParqueaderoExcepcion {
+
+		// Arrange
+		ClaseAutomotorDto detalleClase = new ClaseAutomotorDto();
+
+		try {
+			// Act
+			claseAutomotorLogica.guardarClaseAutomor(detalleClase);
+
+		} catch (ParqueaderoExcepcion e) {
+			// Assert
+			assertEquals(MENSAJE_ERROR, e.getMessage());
+
+		}
+	}
+	
+	
+	
 }

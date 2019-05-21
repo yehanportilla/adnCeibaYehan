@@ -45,5 +45,9 @@ public class TiempoLogicaTest {
 		// Assert
 		assertEquals(esperado, tiempoEntidad);
 	}
+	
+	
+	
+	
 
 }

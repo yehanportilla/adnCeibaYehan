@@ -10,12 +10,17 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import co.com.ceibaparqueadero.dominio.dto.ParqueaderoDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ParqueaderoLogica;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ParqueaderoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ParqueaderoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
 
 
 public class ParqueaderoLogicaTest {
+	
 
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
@@ -45,5 +50,25 @@ public class ParqueaderoLogicaTest {
 		// Assert
 		assertEquals(esperado, parqueaderoEntidad);
 	}
+	
+	/**
+	 * Test  encargado de enviar excepcion al no guardar informacion
+	 * 
+	 * @throws ParqueaderoExcepcion
+	 */
+	@Test
+	public void guardarRegistroParqueoNull() throws ParqueaderoExcepcion {
+
+		// Arrange
+		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
+
+		// Act
+		ParqueaderoEntidad creaNull = parqueaderoRepositorio.save(ParqueaderoBuilder.convertirAEntidad(detalleParqueo));
+		
+		// Assert
+		 assertNull(creaNull);
+	
+	}
+	
 
 }
