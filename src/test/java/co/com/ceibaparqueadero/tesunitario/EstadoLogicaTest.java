@@ -9,9 +9,12 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+
 import co.com.ceibaparqueadero.dominio.dto.EstadoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.EstadoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.EstadoRepositorio;
 
@@ -67,5 +70,33 @@ public class EstadoLogicaTest {
 
 		}
 	}
+	
+	/**
+	 * Test encargado crear estado automotor entidad con dominio
+	 */
 
+	@Test
+	public void crearEstadoAutomotorEntidadConDominioNull() {
+		// Arrange
+
+		// Act
+		EstadoEntidad estadoEntidad = EstadoBuilder.convertirAEntidad(null);
+
+		// Assert
+		assertEquals(null, estadoEntidad);
+	}
+
+	/**
+	 * Test encargado crear estado automotor con entidad null
+	 */
+	@Test
+	public void crearEstadoConEntidadNull() {
+		// Arrange
+
+		// Act
+		EstadoDto estadoDto = EstadoBuilder.convertirADominio(null);
+
+		// Assert
+		assertEquals(null, estadoDto);
+	}
 }
