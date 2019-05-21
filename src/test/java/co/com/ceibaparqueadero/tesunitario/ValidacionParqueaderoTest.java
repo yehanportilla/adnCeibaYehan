@@ -19,6 +19,7 @@ public class ValidacionParqueaderoTest {
 
 	private static final String MENSAJE_AUTOMOTOR_NO_AUTORIZADO = "Lo sentimos. Automotor no autorizado para registro   !";
 	private static final String MENSAJE_CUPO_MOTO = "Lo sentimos no hay cupo para moto   !";
+	private static final String MENSAJE_CUPO_CARRO = "Lo sentimos no hay cupo para carro   !";
 	private static final String MENSAJE_PLACA = "Lo sentimos. No esta autorizado a ingresar  !";
 	private static final String MENSAJE_CILINDRADA = "Cilindraje no permitido   !";
 
@@ -109,6 +110,51 @@ public class ValidacionParqueaderoTest {
 			assertEquals(MENSAJE_CUPO_MOTO, ex.getMessage());
 		}
 	}
+	
+	
+	/**
+	 * Test encargado de validar el cupo para el parqueadero Moto
+	 */
+
+	@Test
+	public void validarCupoParqueaderoMoto() throws ParqueaderoExcepcion {
+
+		// Arrange
+		Long tipoAutomotor = 2l;
+		Long estadoAutomotor = 1l;
+		try {
+			// Act
+			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
+
+		} catch (ParqueaderoExcepcion ex) {
+			// Assert
+			assertEquals(MENSAJE_CUPO_MOTO, ex.getMessage());
+		}
+	}
+	
+	/**
+	 * Test encargado de validar el cupo para el parqueadero Carro
+	 */
+
+	
+	@Test
+	public void validarCupoParqueaderoCarro() throws ParqueaderoExcepcion {
+
+		// Arrange
+		Long tipoAutomotor = 1l;
+		Long estadoAutomotor = 1l;
+		try {
+			// Act
+			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
+
+		} catch (ParqueaderoExcepcion ex) {
+			// Assert
+			assertEquals(MENSAJE_CUPO_CARRO, ex.getMessage());
+		}
+	}
+	
+	
+	
 
 	/**
 	 * Test encargado de validar placa que enpieze por A, no ingresa lunes
