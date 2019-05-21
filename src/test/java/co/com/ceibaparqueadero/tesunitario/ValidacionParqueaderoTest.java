@@ -1,5 +1,6 @@
 package co.com.ceibaparqueadero.tesunitario;
 
+
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
@@ -99,8 +100,8 @@ public class ValidacionParqueaderoTest {
 	public void validarCupoParqueadero() throws ParqueaderoExcepcion {
 
 		// Arrange
-		Long tipoAutomotor = 1l;
-		Long estadoAutomotor = 1l;
+		Long tipoAutomotor = 8l;
+		Long estadoAutomotor = 8l;
 		try {
 			// Act
 			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
@@ -124,10 +125,14 @@ public class ValidacionParqueaderoTest {
 		Long estadoAutomotor = 1l;
 		try {
 			// Act
+			
+			parqueaderoRepositorio.cantidadAutomotorRegistrado(tipoAutomotor, estadoAutomotor);
 			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
+		
 
 		} catch (ParqueaderoExcepcion ex) {
 			// Assert
+	
 			assertEquals(MENSAJE_CUPO_MOTO, ex.getMessage());
 		}
 	}

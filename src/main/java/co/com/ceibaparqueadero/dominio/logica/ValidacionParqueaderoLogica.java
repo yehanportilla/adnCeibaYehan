@@ -62,16 +62,13 @@ public class ValidacionParqueaderoLogica {
 	 */
 	public void validarCupoParqueadero(Long tipoAutomotor, Long estadoAutomotor) throws ParqueaderoExcepcion {
 
-		Integer cantidadAutomotorRegistrados = parqueaderoRepositorio.cantidadAutomotorRegistrado(tipoAutomotor,
-				estadoAutomotor);
+		Integer cantidadAutomotorRegistrados = parqueaderoRepositorio.cantidadAutomotorRegistrado(tipoAutomotor,estadoAutomotor);
 
-		if (tipoAutomotor.equals(CLASE_MOTO) && estadoAutomotor.equals(ESTADO_REGISTRADO)
-				&& cantidadAutomotorRegistrados >= CUPO_MOTO) {
+		if (tipoAutomotor.equals(CLASE_MOTO) && estadoAutomotor.equals(ESTADO_REGISTRADO) && cantidadAutomotorRegistrados >= CUPO_MOTO) {
 
 			throw new ParqueaderoExcepcion(MENSAJE_CUPO_MOTO);
 		}
-		if (tipoAutomotor.equals(CLASE_CARRO) && estadoAutomotor.equals(ESTADO_REGISTRADO)
-				&& cantidadAutomotorRegistrados >= CUPO_CARRO) {
+		if (tipoAutomotor.equals(CLASE_CARRO) && estadoAutomotor.equals(ESTADO_REGISTRADO) && cantidadAutomotorRegistrados >= CUPO_CARRO) {
 
 			throw new ParqueaderoExcepcion(MENSAJE_CUPO_CARRO);
 		}
