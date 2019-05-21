@@ -51,6 +51,44 @@ public class ValidacionParqueaderoTest {
 		}
 
 	}
+	
+	/**
+	 * Test encargado de validar clase automotor Moto
+	 */
+	@Test
+	public void validarTipoAutomotorMoto() throws ParqueaderoExcepcion {
+
+		// Arrange
+		Long tipoAutomotor = 2l;
+		try {
+			// Act
+			validacionParqueaderoLogicaMock.validarTipoAutomotor(tipoAutomotor);
+
+		} catch (ParqueaderoExcepcion ex) {
+			// Assert
+			assertEquals(MENSAJE_AUTOMOTOR_NO_AUTORIZADO, ex.getMessage());
+		}
+
+	}
+	
+	/**
+	 * Test encargado de validar clase automotor Carro
+	 */
+	@Test
+	public void validarTipoAutomotorCarro() throws ParqueaderoExcepcion {
+
+		// Arrange
+		Long tipoAutomotor = 1l;
+		try {
+			// Act
+			validacionParqueaderoLogicaMock.validarTipoAutomotor(tipoAutomotor);
+
+		} catch (ParqueaderoExcepcion ex) {
+			// Assert
+			assertEquals(MENSAJE_AUTOMOTOR_NO_AUTORIZADO, ex.getMessage());
+		}
+
+	}
 
 	/**
 	 * Test encargado de validar el cupo para el parqueadero
