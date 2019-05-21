@@ -1,17 +1,14 @@
 package co.com.ceibaparqueadero.tesunitario;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 import java.util.Arrays;
 import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import co.com.ceibaparqueadero.dominio.dto.EstadoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.EstadoLogica;
@@ -69,7 +66,6 @@ public class EstadoLogicaTest {
 			assertEquals(MENSAJE_ERROR, e.getMessage());
 
 		}
-
 	}
 
 }

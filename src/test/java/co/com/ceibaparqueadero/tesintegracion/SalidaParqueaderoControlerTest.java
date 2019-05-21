@@ -11,19 +11,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
 import co.com.ceibaparqueadero.YehanCeibaApplication;
-import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = YehanCeibaApplication.class)
 @AutoConfigureMockMvc
-@TestPropertySource(locations = "classpath:test.yaml")
+@ActiveProfiles("test")
 
 public class SalidaParqueaderoControlerTest {
 	
@@ -38,14 +37,12 @@ public class SalidaParqueaderoControlerTest {
 	
 	
 	 @Test
-	 public void guardarRegistroSalidaError() throws ParqueaderoExcepcion{ 
-	 try {	 
-	 this.mvc.perform(patch("/api/registro/COO123")
+	 public void guardarRegistroSalidaError() throws Exception{ 
+	 
+	 this.mvc.perform(patch("/api/registro")
 	 .characterEncoding("utf-8")
 	 .contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andExpect(status().is4xxClientError());
-	 }catch(Exception e) {
-		 throw new ParqueaderoExcepcion("Placa no registrada");
-	 }	 
+		 
 	 }
 	
 
