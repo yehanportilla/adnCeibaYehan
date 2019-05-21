@@ -93,27 +93,6 @@ public class ValidacionParqueaderoTest {
 	}
 
 	/**
-	 * Test encargado de validar el cupo para el parqueadero
-	 */
-
-	@Test
-	public void validarCupoParqueadero() throws ParqueaderoExcepcion {
-
-		// Arrange
-		Long tipoAutomotor = 8l;
-		Long estadoAutomotor = 8l;
-		try {
-			// Act
-			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
-
-		} catch (ParqueaderoExcepcion ex) {
-			// Assert
-			assertEquals(MENSAJE_CUPO_MOTO, ex.getMessage());
-		}
-	}
-	
-	
-	/**
 	 * Test encargado de validar el cupo para el parqueadero Moto
 	 */
 
@@ -125,10 +104,7 @@ public class ValidacionParqueaderoTest {
 		Long estadoAutomotor = 1l;
 		try {
 			// Act
-			
-			parqueaderoRepositorio.cantidadAutomotorRegistrado(tipoAutomotor, estadoAutomotor);
 			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
-		
 
 		} catch (ParqueaderoExcepcion ex) {
 			// Assert

@@ -14,11 +14,12 @@ import org.mockito.MockitoAnnotations;
 import co.com.ceibaparqueadero.dominio.dto.ClaseAutomotorDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ClaseAutomotorBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ClaseAutomotorRepositorio;
 
 public class ClaseAutomotorTest {
-	
+
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 
 	@Mock
@@ -47,10 +48,9 @@ public class ClaseAutomotorTest {
 		// Assert
 		assertEquals(esperado, claseAuto);
 	}
-	
-	
+
 	/**
-	 * Test  encargado de enviar excepcion al no guardar informacion
+	 * Test encargado de enviar excepcion al no guardar informacion
 	 * 
 	 * @throws ParqueaderoExcepcion
 	 */
@@ -70,7 +70,34 @@ public class ClaseAutomotorTest {
 
 		}
 	}
-	
-	
-	
+
+	/**
+	 * Test encargado crear clase automotor entidad con dominio
+	 */
+
+	@Test
+	public void crearClaseAutomotorEntidadConDominioNull() {
+		// Arrange
+
+		// Act
+		ClaseAutomotorEntidad claseAutomotorEntidad = ClaseAutomotorBuilder.convertirAEntidad(null);
+
+		// Assert
+		assertEquals(null, claseAutomotorEntidad);
+	}
+
+	/**
+	 * Test encargado crear clase automotor con entidad null
+	 */
+	@Test
+	public void crearClaseConEntidadNull() {
+		// Arrange
+
+		// Act
+		ClaseAutomotorDto claseAutomotorDto = ClaseAutomotorBuilder.convertirADominio(null);
+
+		// Assert
+		assertEquals(null, claseAutomotorDto);
+	}
+
 }
