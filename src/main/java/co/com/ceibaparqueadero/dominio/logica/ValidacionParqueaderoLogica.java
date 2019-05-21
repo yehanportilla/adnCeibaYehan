@@ -6,12 +6,10 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 import co.com.ceibaparqueadero.dominio.dto.TiempoParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
-
 
 @Service
 public class ValidacionParqueaderoLogica {
@@ -87,8 +85,7 @@ public class ValidacionParqueaderoLogica {
 	public void validarIngresoPlacaDia(String numPlaca) throws ParqueaderoExcepcion {
 
 		int diaSemanaActual = obtenerDia();
-
-		if ( (LETRA == numPlaca.charAt(0) && Calendar.SUNDAY == diaSemanaActual ) || Calendar.MONDAY == diaSemanaActual) {
+		if (LETRA == numPlaca.charAt(0) && (diaSemanaActual != Calendar.SUNDAY || diaSemanaActual != Calendar.MONDAY)) {
 
 			throw new ParqueaderoExcepcion(MENSAJE_PLACA);
 		}
@@ -116,7 +113,8 @@ public class ValidacionParqueaderoLogica {
 	}
 
 	/**
-	 *  Metodo encargado de calcular el valor segun el tiempo
+	 * Metodo encargado de calcular el valor segun el tiempo
+	 * 
 	 * @param claseId
 	 * @param tiempoParqueaderoDto
 	 * @param cilindrada
@@ -131,31 +129,31 @@ public class ValidacionParqueaderoLogica {
 
 		if (tiempoParqueaderoDto.getHora() >= REGLA_HORA) {// si pasa de 9 horas se cobra el dia
 			precioGenerado += tarifaDia;
+		} else {// si no se cobra por horas
+
+			precioGenerado += tiempoParqueaderoDto.getHora() * tarifaHora;
+
+			if (tiempoParqueaderoDto.getMinuto() > 0) {
+				precioGenerado += tarifaHora;
+			}
 		}
-		else {// si no se cobra por horas
-			
-			  precioGenerado += tiempoParqueaderoDto.getHora() * tarifaHora;
-			  
-			  if(tiempoParqueaderoDto.getMinuto() >0) {
-			  precioGenerado += tarifaHora;
-			  }
-		}
-		if(REGLA_CILINDRADA < cilindrada && claseId.equals(CLASE_MOTO)){// si cilindraje es mayor a 500 se cobra 2000 mas
+		if (REGLA_CILINDRADA < cilindrada && claseId.equals(CLASE_MOTO)) {// si cilindraje es mayor a 500 se cobra 2000
+																			// mas
 			precioGenerado += COBRO_ADICIONAL_MOTO;
 		}
 
 		return precioGenerado;
 	}
-	
+
 	/**
 	 * Metodo encargado de calcular el precio a pagar
 	 */
-	 public Double calcularPrecioAPagar(Date fechaRegistro,Date fechaSalida, Long tipoAutomotor,Long cilindrada){
-		 
-		 TiempoParqueaderoDto tiempoParqueaderoDto = CalculaTiempoParqueaderoLogica.calcularTiempoParqueadero(fechaRegistro, fechaSalida);
-		 
-		 return calcularValorTiempo(tipoAutomotor, tiempoParqueaderoDto, cilindrada);
+	public Double calcularPrecioAPagar(Date fechaRegistro, Date fechaSalida, Long tipoAutomotor, Long cilindrada) {
+
+		TiempoParqueaderoDto tiempoParqueaderoDto = CalculaTiempoParqueaderoLogica
+				.calcularTiempoParqueadero(fechaRegistro, fechaSalida);
+
+		return calcularValorTiempo(tipoAutomotor, tiempoParqueaderoDto, cilindrada);
 	}
-	
 
 }

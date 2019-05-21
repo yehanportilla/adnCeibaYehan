@@ -31,7 +31,7 @@ public class ParqueaderoLogicaTest {
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 	
-	//@InjectMocks
+	
 	@Mock
 	ParqueaderoLogica parqueaderoLogica;
 	
@@ -67,12 +67,13 @@ public class ParqueaderoLogicaTest {
 	public void guardarRegistroParqueoNull() throws ParqueaderoExcepcion{
 
 		// Arrange
+		Long id = 8l;
 		
 		ClaseAutomotorEntidad claseAutomotorEntidad = new ClaseAutomotorEntidad();
-		claseAutomotorEntidad.setId(new Long(8));
+		claseAutomotorEntidad.setId(id);
 		
 		EstadoEntidad estadoEntidad = new EstadoEntidad();
-		estadoEntidad.setId(new Long(8));
+		estadoEntidad.setId(id);
 		
 		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
 		

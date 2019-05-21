@@ -60,5 +60,21 @@ public class ParqueaderoControlerTest {
 				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print()).andExpect(status().isOk());
 
 	}
+	
+	
+    /**
+     * Test de integracion que valida metodo post fallida
+     * @throws Exception
+     */
+	@Test
+	public void guardarRegistroServicioError() throws Exception {
+
+		this.mvc.perform(post("/api/registros").characterEncoding("utf-8")
+				.content("{\"placa\":\"ACD123\",\"cilindraje\":0,\"claseAutomotorEntidad\":{\"id\":2},\"estadoEntidad\":{\"id\":1}}")
+				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print()).andExpect(status().is4xxClientError());
+
+	}
+	
+	
 
 }
