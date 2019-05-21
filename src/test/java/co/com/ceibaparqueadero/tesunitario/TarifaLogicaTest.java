@@ -7,28 +7,30 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
 
-
 public class TarifaLogicaTest {
-	
-	
+
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
+
 	@Mock
 	private TarifaRepositorio tarifaRepositorio;
+
 	
-	@InjectMocks
+	@Mock
 	TarifaLogica tarifaLogica;
-	
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}
-
 
 	/**
 	 * Test Integracion encargado de listar los tiempos de parqueadero
@@ -44,6 +46,28 @@ public class TarifaLogicaTest {
 
 		// Assert
 		assertEquals(esperado, tarifaEntidad);
+	}
+
+	/**
+	 * Test encargado de enviar excepcion al no guardar informacion
+	 * 
+	 * @throws ParqueaderoExcepcion
+	 */
+	@Test
+	public void guardarTiempoParqueoNull() throws ParqueaderoExcepcion {
+
+		// Arrange
+		TarifaDto detalleTarifa = new TarifaDto();
+
+		try {
+			// Act
+			tarifaLogica.guardarTarifa(detalleTarifa);
+
+		} catch (ParqueaderoExcepcion e) {
+			// Assert
+			assertEquals(MENSAJE_ERROR, e.getMessage());
+
+		}
 	}
 
 }
