@@ -11,11 +11,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import co.com.ceibaparqueadero.dominio.dto.TiempoDto;
+import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoRepositorio;
 
 public class TiempoLogicaTest {
+	
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
 	
 	
 	@Mock
@@ -47,6 +51,27 @@ public class TiempoLogicaTest {
 	}
 	
 	
+	/**
+	 * Test  encargado de enviar excepcion al no guardar informacion
+	 * 
+	 * @throws ParqueaderoExcepcion
+	 */
+	@Test
+	public void guardarTiempoParqueoNull() throws ParqueaderoExcepcion {
+
+		// Arrange
+		TiempoDto detalleTiempo = new TiempoDto();
+
+		try {
+			// Act
+			tiempoLogica.guardarTiempo(detalleTiempo);
+
+		} catch (ParqueaderoExcepcion e) {
+			// Assert
+			assertEquals(MENSAJE_ERROR, e.getMessage());
+
+		}
+	}
 	
 	
 

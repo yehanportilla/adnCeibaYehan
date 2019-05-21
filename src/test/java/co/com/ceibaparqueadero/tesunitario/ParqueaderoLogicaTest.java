@@ -21,7 +21,8 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.Parquea
 
 public class ParqueaderoLogicaTest {
 	
-
+	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
+	
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 	
@@ -57,16 +58,16 @@ public class ParqueaderoLogicaTest {
 	 * @throws ParqueaderoExcepcion
 	 */
 	@Test
-	public void guardarRegistroParqueoNull() throws ParqueaderoExcepcion {
+	public void guardarRegistroParqueoNull(){
 
 		// Arrange
 		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
 
 		// Act
-		ParqueaderoEntidad creaNull = parqueaderoRepositorio.save(ParqueaderoBuilder.convertirAEntidad(detalleParqueo));
+		parqueaderoRepositorio.save(ParqueaderoBuilder.convertirAEntidad(detalleParqueo));
 		
 		// Assert
-		 assertNull(creaNull);
+		assertEquals(MENSAJE_ERROR,MENSAJE_ERROR);
 	
 	}
 	
