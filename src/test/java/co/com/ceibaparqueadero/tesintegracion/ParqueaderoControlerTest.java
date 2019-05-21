@@ -47,12 +47,16 @@ public class ParqueaderoControlerTest {
 				.andExpect(status().is2xxSuccessful());
 
 	}
-
+	
+     /**
+      * Test de integracion que valida metodo post guardar registro
+      * @throws Exception
+      */
 	@Test
 	public void guardarRegistroServicio() throws Exception {
 
 		this.mvc.perform(post("/api/registros").characterEncoding("utf-8")
-				.content("{\"placa\":\"COO123\",\"cilindraje\":500,\"claseAutomotorEntidad\":{\"id\":2},\"estadoEntidad\":{\"id\":1}}")
+				.content("{\"placa\":\"CCD123\",\"cilindraje\":500,\"claseAutomotorEntidad\":{\"id\":2},\"estadoEntidad\":{\"id\":1}}")
 				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE)).andDo(print()).andExpect(status().isOk());
 
 	}
