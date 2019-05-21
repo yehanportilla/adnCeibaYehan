@@ -7,18 +7,23 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import co.com.ceibaparqueadero.dominio.dto.ParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ParqueaderoLogica;
-import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ParqueaderoBuilder;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ParqueaderoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
+import org.springframework.test.context.junit4.SpringRunner;
 
 
+@RunWith(SpringRunner.class)
+@DataJpaTest
 public class ParqueaderoLogicaTest {
 	
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
@@ -26,7 +31,8 @@ public class ParqueaderoLogicaTest {
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 	
-	@InjectMocks
+	//@InjectMocks
+	@Mock
 	ParqueaderoLogica parqueaderoLogica;
 	
 	@Before
@@ -58,18 +64,30 @@ public class ParqueaderoLogicaTest {
 	 * @throws ParqueaderoExcepcion
 	 */
 	@Test
-	public void guardarRegistroParqueoNull(){
+	public void guardarRegistroParqueoNull() throws ParqueaderoExcepcion{
 
 		// Arrange
-		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
-
-		// Act
-		parqueaderoRepositorio.save(ParqueaderoBuilder.convertirAEntidad(detalleParqueo));
 		
-		// Assert
-		assertEquals(MENSAJE_ERROR,MENSAJE_ERROR);
+		ClaseAutomotorEntidad claseAutomotorEntidad = new ClaseAutomotorEntidad();
+		claseAutomotorEntidad.setId(new Long(8));
+		
+		EstadoEntidad estadoEntidad = new EstadoEntidad();
+		estadoEntidad.setId(new Long(8));
+		
+		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
+		
+		detalleParqueo.setClaseAutomotorEntidad(claseAutomotorEntidad);
+		detalleParqueo.setEstadoEntidad(estadoEntidad);
+		
+		try {
+			// Act
+			parqueaderoLogica.registrarAutomotorParqueadero(detalleParqueo);
 	
+			} catch (ParqueaderoExcepcion e) {
+			// Assert
+			assertEquals(MENSAJE_ERROR, e.getMessage());
+
+		}
 	}
-	
 
 }
