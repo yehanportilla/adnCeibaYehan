@@ -5,16 +5,6 @@ public class EstadoDto {
 	private Long id;
 	private String nombre;
 	
-	public EstadoDto() {
-		
-	}
-
-	public EstadoDto(Long id, String nombre) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-	}
-
 	public Long getId() {
 		return id;
 	}

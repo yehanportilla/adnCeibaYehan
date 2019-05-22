@@ -10,21 +10,6 @@ public class EstadoBuilder {
 	}
 
 	/*
-	 * Metodo encargado de convertir de dto a entidad
-	 */
-	public static EstadoDto convertirADominio(EstadoEntidad estadoEntidad) {
-
-		EstadoDto estadoDto = null;
-
-		if (estadoEntidad != null) {
-
-			estadoDto = new EstadoDto(estadoEntidad.getId(), estadoEntidad.getNombre());
-		}
-
-		return estadoDto;
-	}
-
-	/*
 	 * Metodo encargado de convertir de entidad a dto
 	 */
 

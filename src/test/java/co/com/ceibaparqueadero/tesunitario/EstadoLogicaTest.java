@@ -85,18 +85,4 @@ public class EstadoLogicaTest {
 		// Assert
 		assertEquals(null, estadoEntidad);
 	}
-
-	/**
-	 * Test encargado crear estado automotor con entidad null
-	 */
-	@Test
-	public void crearEstadoConEntidadNull() {
-		// Arrange
-
-		// Act
-		EstadoDto estadoDto = EstadoBuilder.convertirADominio(null);
-
-		// Assert
-		assertEquals(null, estadoDto);
-	}
 }
