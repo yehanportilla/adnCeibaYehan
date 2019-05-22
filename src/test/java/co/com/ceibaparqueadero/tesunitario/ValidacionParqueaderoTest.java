@@ -1,6 +1,5 @@
 package co.com.ceibaparqueadero.tesunitario;
 
-
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
@@ -30,6 +29,9 @@ public class ValidacionParqueaderoTest {
 	@InjectMocks
 	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
 
+	@Mock
+	private ValidacionParqueaderoLogica parqueaderoLogicaMock;
+
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
@@ -53,7 +55,7 @@ public class ValidacionParqueaderoTest {
 		}
 
 	}
-	
+
 	/**
 	 * Test encargado de validar clase automotor Moto
 	 */
@@ -72,7 +74,7 @@ public class ValidacionParqueaderoTest {
 		}
 
 	}
-	
+
 	/**
 	 * Test encargado de validar clase automotor Carro
 	 */
@@ -108,16 +110,15 @@ public class ValidacionParqueaderoTest {
 
 		} catch (ParqueaderoExcepcion ex) {
 			// Assert
-	
+
 			assertEquals(MENSAJE_CUPO_MOTO, ex.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Test encargado de validar el cupo para el parqueadero Carro
 	 */
 
-	
 	@Test
 	public void validarCupoParqueaderoCarro() throws ParqueaderoExcepcion {
 
@@ -133,7 +134,7 @@ public class ValidacionParqueaderoTest {
 			assertEquals(MENSAJE_CUPO_CARRO, ex.getMessage());
 		}
 	}
-	
+
 	/**
 	 * Test encargado de validar placa que enpieze por A, no ingresa lunes
 	 * 
@@ -156,19 +157,39 @@ public class ValidacionParqueaderoTest {
 	}
 
 	/**
-	 * Test encargado de validar el ciliendraje
+	 * Test encargado de validar el ciliendraje minimo
 	 */
 	@Test
-	public void validarCilindrada() {
+	public void validarCilindradaMinimo() throws ParqueaderoExcepcion {
 
 		// Arrange
 		Long numCilindrada = 0l;
 
 		try {
 			// Act
-			validacionParqueaderoLogicaMock.validarCilindrada(numCilindrada);
+			parqueaderoLogicaMock.validarCilindrada(numCilindrada);
 
-		} catch (Exception e) {
+		} catch (ParqueaderoExcepcion e) {
+			// Assert
+			assertEquals(MENSAJE_CILINDRADA, e.getMessage());
+		}
+
+	}
+
+	/**
+	 * Test encargado de validar el ciliendraje maximo
+	 */
+	@Test
+	public void validarCilindradaMaximo() throws ParqueaderoExcepcion {
+
+		// Arrange
+		Long numCilindrada = 11000l;
+
+		try {
+			// Act
+			parqueaderoLogicaMock.validarCilindrada(numCilindrada);
+
+		} catch (ParqueaderoExcepcion e) {
 			// Assert
 			assertEquals(MENSAJE_CILINDRADA, e.getMessage());
 		}

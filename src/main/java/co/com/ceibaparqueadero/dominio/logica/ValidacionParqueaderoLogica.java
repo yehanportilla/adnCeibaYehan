@@ -25,7 +25,7 @@ public class ValidacionParqueaderoLogica {
 	private static final int CUPO_MOTO = 10;
 	private static final int CUPO_CARRO = 30;
 	private static final int CILINDRADA_MINIMA = 1;
-	private static final int CILINDRADA_MAXIMA = 5000;
+	private static final int CILINDRADA_MAXIMA = 10000;
 	private static final String MENSAJE_CILINDRADA = "Cilindraje no permitido   !";
 	private static final Long ID_DIA = 1l;
 	private static final Long ID_HORA = 2l;
