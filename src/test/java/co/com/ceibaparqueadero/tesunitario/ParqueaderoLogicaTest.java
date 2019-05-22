@@ -12,9 +12,11 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
+
 import co.com.ceibaparqueadero.dominio.dto.ParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ParqueaderoLogica;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ParqueaderoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ParqueaderoEntidad;
@@ -90,5 +92,37 @@ public class ParqueaderoLogicaTest {
 
 		}
 	}
+	
+	/**
+	 * Test encargado crear registro automotor entidad con dominio
+	 */
+
+	@Test
+	public void crearRegistroEntidadConDominioNull() {
+		// Arrange
+
+		// Act
+		ParqueaderoEntidad parqueaderoEntidad = ParqueaderoBuilder.convertirAEntidad(null);
+
+		// Assert
+		assertEquals(null, parqueaderoEntidad);
+	}
+
+	/**
+	 * Test encargado crear registro automotor con entidad null
+	 */
+	@Test
+	public void crearRegistroConEntidadNull() {
+		// Arrange
+
+		// Act
+		ParqueaderoDto parqueaderoDto = ParqueaderoBuilder.convertirADominio(null);
+
+		// Assert
+		assertEquals(null, parqueaderoDto);
+	}
+	
+	
+	
 
 }
