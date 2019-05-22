@@ -10,6 +10,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+
 
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ValidacionParqueaderoLogica;
@@ -29,8 +31,8 @@ public class ValidacionParqueaderoTest {
 	@InjectMocks
 	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
 
-	@Mock
-	private ValidacionParqueaderoLogica parqueaderoLogicaMock;
+	@Spy
+	private ValidacionParqueaderoLogica validacionParqueaderoLogica;
 
 	@Before
 	public void setUp() {
@@ -163,12 +165,12 @@ public class ValidacionParqueaderoTest {
 	public void validarCilindradaMinimo() throws ParqueaderoExcepcion {
 
 		// Arrange
-		Long numCilindrada = 1L;
+		Long numCilindrada = 0l;
 
 		try {
 			// Act
-			parqueaderoLogicaMock.validarCilindrada(numCilindrada);
-
+			validacionParqueaderoLogica.validarCilindrada(numCilindrada);
+			fail();
 		} catch (ParqueaderoExcepcion e) {
 			// Assert
 			assertEquals(MENSAJE_CILINDRADA, e.getMessage());
@@ -187,7 +189,8 @@ public class ValidacionParqueaderoTest {
 
 		try {
 			// Act
-			parqueaderoLogicaMock.validarCilindrada(numCilindrada);
+			validacionParqueaderoLogica.validarCilindrada(numCilindrada);
+			fail();
 
 		} catch (ParqueaderoExcepcion e) {
 			// Assert
