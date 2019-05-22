@@ -43,8 +43,6 @@ public class ParqueaderoLogicaTest {
 		MockitoAnnotations.initMocks(this);
 	}
 	
-	
-	
 	/**
 	 * Test encargado de listar los automotores registrados
 	 */

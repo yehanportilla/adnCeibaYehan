@@ -10,12 +10,13 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-
 import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TarifaBuilder;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
 
 public class TarifaLogicaTest {
@@ -25,7 +26,6 @@ public class TarifaLogicaTest {
 	@Mock
 	private TarifaRepositorio tarifaRepositorio;
 
-	
 	@Mock
 	TarifaLogica tarifaLogica;
 
@@ -71,7 +71,7 @@ public class TarifaLogicaTest {
 
 		}
 	}
-	
+
 	/**
 	 * Test encargado crear la tarifa entidad con dominio
 	 */
@@ -85,6 +85,32 @@ public class TarifaLogicaTest {
 
 		// Assert
 		assertEquals(null, tarifaEntidad);
+	}
+
+	/**
+	 * Test encargado de validar el set y get de la tabla tarifa
+	 */
+	public void validarEntidadTarifa() {
+
+		// Arrange
+		Long id = 5l;
+		Double valor = 5000d;
+		ClaseAutomotorEntidad claseAutomotorEntidad = new ClaseAutomotorEntidad();
+		TiempoEntidad tiempoEntidad = new TiempoEntidad();
+
+		// Act
+		TarifaEntidad tarifaEntidad = new TarifaEntidad();
+		tarifaEntidad.setId(id);
+		tarifaEntidad.setValor(valor);
+		tarifaEntidad.setClaseAutomotorEntidad(claseAutomotorEntidad);
+		tarifaEntidad.setTiempoEntidad(tiempoEntidad);
+
+		// Assert
+		assertEquals(id, tarifaEntidad.getId());
+		assertEquals(valor, tarifaEntidad.getValor());
+		assertEquals(claseAutomotorEntidad, tarifaEntidad.getClaseAutomotorEntidad());
+		assertEquals(tiempoEntidad, tarifaEntidad.getTiempoEntidad());
+
 	}
 
 }
