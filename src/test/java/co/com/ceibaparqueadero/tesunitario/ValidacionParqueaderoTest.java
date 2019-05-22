@@ -7,7 +7,6 @@ import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
@@ -27,7 +26,7 @@ public class ValidacionParqueaderoTest {
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 
-	@InjectMocks
+	@Mock
 	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
 
 	@Before
@@ -156,8 +155,31 @@ public class ValidacionParqueaderoTest {
 			// Assert
 			assertEquals(MENSAJE_PLACA, e.getMessage());
 		}
-
 	}
+	
+	
+	/**
+	 * Test encargado de validar placa que enpieze por A, no ingresa Domingo
+	 * 
+	 */
+	@Test
+	public void validarPlacaDomingo() {
+
+		// Arrange
+		String numPlaca = "ABC123";
+
+		when(validacionParqueaderoLogicaMock.obtenerDia()).thenReturn(Calendar.SUNDAY);
+		try {
+			// Act
+			validacionParqueaderoLogicaMock.validarIngresoPlacaDia(numPlaca);
+
+		} catch (Exception e) {
+			// Assert
+			assertEquals(MENSAJE_PLACA, e.getMessage());
+		}
+	}
+	
+	
 
 	/**
 	 * Test encargado de validar el ciliendraje
