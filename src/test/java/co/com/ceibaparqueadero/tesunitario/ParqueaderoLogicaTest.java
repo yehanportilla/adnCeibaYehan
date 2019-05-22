@@ -3,6 +3,7 @@ package co.com.ceibaparqueadero.tesunitario;
 import static org.junit.Assert.*;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Before;
@@ -106,6 +107,36 @@ public class ParqueaderoLogicaTest {
 
 		// Assert
 		assertEquals(null, parqueaderoEntidad);
+	}
+	
+	/**
+	 * Test encargado de validar el set y get de la tabla entidad
+	 */
+	@Test
+	public void validarParqueaderoEntidad() {
+		
+		// Arrange
+		Long id =5l;
+		String placa="SSS123";
+		Long cilindraje =200l;
+		Date fechaRegistro = new Date();
+		ClaseAutomotorEntidad claseAutomotorEntidad = new ClaseAutomotorEntidad();
+		
+		// Act
+		ParqueaderoEntidad parqueaderoEntidad = new ParqueaderoEntidad();
+		
+		parqueaderoEntidad.setId(id);
+		parqueaderoEntidad.setPlaca(placa);
+		parqueaderoEntidad.setCilindraje(cilindraje);
+		parqueaderoEntidad.setFechaRegistro(fechaRegistro);
+		parqueaderoEntidad.setClaseAutomotorEntidad(claseAutomotorEntidad);
+		
+		// Assert
+		assertEquals(id, parqueaderoEntidad.getId());
+		assertEquals(placa, parqueaderoEntidad.getPlaca());
+		assertEquals(cilindraje,parqueaderoEntidad.getCilindraje());
+		assertEquals(fechaRegistro,parqueaderoEntidad.getFechaRegistro());
+		assertEquals(claseAutomotorEntidad,parqueaderoEntidad.getClaseAutomotorEntidad());
 	}
 
 	/**

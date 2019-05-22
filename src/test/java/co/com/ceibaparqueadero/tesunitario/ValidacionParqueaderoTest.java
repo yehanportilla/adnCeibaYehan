@@ -7,6 +7,7 @@ import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
@@ -26,7 +27,7 @@ public class ValidacionParqueaderoTest {
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 
-	@Mock
+	@InjectMocks
 	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
 
 	@Before
@@ -133,9 +134,6 @@ public class ValidacionParqueaderoTest {
 		}
 	}
 	
-	
-	
-
 	/**
 	 * Test encargado de validar placa que enpieze por A, no ingresa lunes
 	 * 
