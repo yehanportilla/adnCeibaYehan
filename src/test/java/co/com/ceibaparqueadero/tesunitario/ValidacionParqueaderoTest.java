@@ -6,17 +6,24 @@ import java.util.Calendar;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ValidacionParqueaderoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
 
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional 
 public class ValidacionParqueaderoTest {
 
 	private static final String MENSAJE_AUTOMOTOR_NO_AUTORIZADO = "Lo sentimos. Automotor no autorizado para registro   !";
@@ -28,11 +35,15 @@ public class ValidacionParqueaderoTest {
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 
-	@InjectMocks
-	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
-
 	@Spy
 	private ValidacionParqueaderoLogica validacionParqueaderoLogica;
+	
+	@Mock
+	private ValidacionParqueaderoLogica validacionParqueaderoSimulacro;
+	
+	@InjectMocks
+	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
+	
 
 	@Before
 	public void setUp() {
@@ -97,68 +108,6 @@ public class ValidacionParqueaderoTest {
 	}
 
 	/**
-	 * Test encargado de validar el cupo para el parqueadero Moto
-	 */
-
-	@Test
-	public void validarCupoParqueaderoMoto() throws ParqueaderoExcepcion {
-
-		// Arrange
-		Long tipoAutomotor = 2l;
-		Long estadoAutomotor = 1l;
-		try {
-			// Act
-			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
-
-		} catch (ParqueaderoExcepcion ex) {
-			// Assert
-
-			assertEquals(MENSAJE_CUPO_MOTO, ex.getMessage());
-		}
-	}
-
-	/**
-	 * Test encargado de validar el cupo para el parqueadero Carro
-	 */
-
-	@Test
-	public void validarCupoParqueaderoCarro() throws ParqueaderoExcepcion {
-
-		// Arrange
-		Long tipoAutomotor = 1l;
-		Long estadoAutomotor = 1l;
-		try {
-			// Act
-			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
-
-		} catch (ParqueaderoExcepcion ex) {
-			// Assert
-			assertEquals(MENSAJE_CUPO_CARRO, ex.getMessage());
-		}
-	}
-
-	/**
-	 * Test encargado de validar placa que enpieze por A, no ingresa lunes
-	 * 
-	 */
-	@Test
-	public void validarPlacaLunes() {
-
-		// Arrange
-		String numPlaca = "LBC123";
-
-		when(validacionParqueaderoLogica.obtenerDia()).thenReturn(Calendar.MONDAY);
-		try {
-			// Act
-			validacionParqueaderoLogica.validarIngresoPlacaDia(numPlaca);
-
-		} catch (Exception e) {
-			// Assert
-			assertEquals(MENSAJE_PLACA, e.getMessage());
-		}
-	}
-
-	/**
 	 * Test encargado de validar el ciliendraje minimo
 	 */
 	@Test
@@ -197,6 +146,71 @@ public class ValidacionParqueaderoTest {
 			assertEquals(MENSAJE_CILINDRADA, e.getMessage());
 		}
 
+	}
+	
+	//---------------------- por corregir
+	/**
+	 * Test encargado de validar el cupo para el parqueadero Moto
+	 */
+
+	@Test
+	public void validarCupoParqueaderoMoto() throws ParqueaderoExcepcion {
+
+		// Arrange
+		Long tipoAutomotor = 2l;
+		Long estadoAutomotor = 1l;
+		try {
+			// Act
+			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
+		
+		} catch (ParqueaderoExcepcion ex) {
+			// Assert
+
+			assertEquals(MENSAJE_CUPO_MOTO, ex.getMessage());
+		}
+	}
+
+	/**
+	 * Test encargado de validar el cupo para el parqueadero Carro
+	 */
+
+	@Test
+	public void validarCupoParqueaderoCarro() throws ParqueaderoExcepcion {
+
+		// Arrange
+		Long tipoAutomotor = 1l;
+		Long estadoAutomotor = 1l;
+		try {
+			// Act
+			validacionParqueaderoLogicaMock.validarCupoParqueadero(tipoAutomotor, estadoAutomotor);
+			
+
+		} catch (ParqueaderoExcepcion ex) {
+			// Assert
+			assertEquals(MENSAJE_CUPO_CARRO, ex.getMessage());
+		}
+	}
+	
+	/**
+	 * Test encargado de validar placa que enpieze por A, no ingresa lunes
+	 * 
+	 */
+	@Test
+	public void validarPlacaLunes() {
+
+		// Arrange
+		String numPlaca = "ABC123";
+
+		when(validacionParqueaderoLogica.obtenerDia()).thenReturn(Calendar.MONDAY);
+		try {
+			// Act
+			validacionParqueaderoLogica.validarIngresoPlacaDia(numPlaca);
+			fail();
+
+		} catch (Exception e) {
+			// Assert
+			assertEquals(MENSAJE_PLACA, e.getMessage());
+		}
 	}
 
 }
