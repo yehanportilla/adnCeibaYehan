@@ -151,6 +151,29 @@ public class ParqueaderoLogicaTest {
 		assertEquals(null, parqueaderoDto);
 	}
 	
+	/**
+	 * Test encargado de validar el set y get de la tabla ParqueaderoDto
+	 */
+	@Test
+	public void validarParqueaderoDto() {
+		
+		// Arrange
+		Long id =5l;
+		Date fechaSalida = new Date();
+		Double valor = 1000d;
+		
+		// Act
+		ParqueaderoDto parqueaderoDto = new ParqueaderoDto();
+		parqueaderoDto.setId(id);
+		parqueaderoDto.setFechaSalida(fechaSalida);
+		parqueaderoDto.setValor(valor);
+		
+		// Assert
+		assertEquals(id,parqueaderoDto.getId());
+		assertEquals(fechaSalida,parqueaderoDto.getFechaSalida());
+		assertEquals(valor,parqueaderoDto.getValor());
+		
+	}
 	
 	
 
