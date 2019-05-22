@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import co.com.ceibaparqueadero.dominio.dto.TiempoDto;
+import co.com.ceibaparqueadero.dominio.dto.TiempoParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TiempoBuilder;
@@ -89,4 +90,35 @@ public class TiempoLogicaTest {
 		// Assert
 		assertEquals(null, tiempoEntidad);
 	}
+	
+	
+	/**
+	 * validar TiempoParqueaderoDto
+	 */
+	@Test
+	public void validarTiempoParqueaderoDto() {
+		
+		// Arrange
+		  int dia =1;
+		  int hora =2;
+		  int minuto =2;
+		  int segundo =2;
+		  
+		// Act
+		 TiempoParqueaderoDto tiempoParqueaderoDto = new TiempoParqueaderoDto(dia, hora, minuto, segundo);
+		 tiempoParqueaderoDto.setDia(dia);
+		 tiempoParqueaderoDto.setHora(hora);
+		 tiempoParqueaderoDto.setMinuto(minuto);
+		 tiempoParqueaderoDto.setSegundo(segundo);
+		 
+		// Assert
+		assertEquals(dia,tiempoParqueaderoDto.getDia());
+		assertEquals(hora,tiempoParqueaderoDto.getHora());
+		assertEquals(hora,tiempoParqueaderoDto.getMinuto());
+		assertEquals(hora,tiempoParqueaderoDto.getSegundo());
+	}
+	
+	
+	
+	
 }

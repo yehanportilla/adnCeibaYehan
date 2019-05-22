@@ -7,7 +7,9 @@ public class TiempoParqueaderoDto {
 	private int minuto;
 	private int segundo;
 	
+	
 	public TiempoParqueaderoDto(int dia, int hora, int minuto, int segundo) {
+
 		this.dia = dia;
 		this.hora = hora;
 		this.minuto = minuto;
