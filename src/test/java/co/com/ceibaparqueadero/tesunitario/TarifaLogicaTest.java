@@ -10,9 +10,11 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+
 import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TarifaBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
 
@@ -69,5 +71,37 @@ public class TarifaLogicaTest {
 
 		}
 	}
+	
+	/**
+	 * Test encargado crear la tarifa entidad con dominio
+	 */
+
+	@Test
+	public void crearTarifaEntidadConDominioNull() {
+		// Arrange
+
+		// Act
+		TarifaEntidad tarifaEntidad = TarifaBuilder.convertirAEntidad(null);
+
+		// Assert
+		assertEquals(null, tarifaEntidad);
+	}
+
+	/**
+	 * Test encargado crear la tarifa  con entidad null
+	 */
+	@Test
+	public void crearTarifaConEntidadNull() {
+		// Arrange
+
+		// Act
+		TarifaDto tarifaDto = TarifaBuilder.convertirADominio(null);
+
+		// Assert
+		assertEquals(null, tarifaDto);
+	}
+	
+	
+	
 
 }
