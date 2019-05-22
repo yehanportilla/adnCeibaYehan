@@ -2,7 +2,10 @@ package co.com.ceibaparqueadero.tesunitario;
 
 import static org.junit.Assert.*;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
+import co.com.ceibaparqueadero.dominio.logica.CalculaTiempoParqueaderoLogica;
 import co.com.ceibaparqueadero.dominio.logica.ValidacionParqueaderoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
 
@@ -37,6 +41,9 @@ public class ValidacionParqueaderoTest {
 
 	@Spy
 	private ValidacionParqueaderoLogica validacionParqueaderoLogica;
+	
+	@InjectMocks
+	private CalculaTiempoParqueaderoLogica calculaTiempoParqueaderoLogicaSpy;
 	
 	
 	@InjectMocks
@@ -231,5 +238,30 @@ public class ValidacionParqueaderoTest {
 			assertEquals(MENSAJE_PLACA, e.getMessage());
 		}
 	}
+	
+	
+	//----
+	@Test
+	public void validarTiempoParqueadero() throws ParseException {
+		
+		// Arrange
+		   SimpleDateFormat fechaInicio = new SimpleDateFormat("yyy-mm-dd H:m:s");
+		   String fecha= "2019-05-22 08:00:00";
+		   Date fechaRegistro = fechaInicio.parse(fecha);
+		   
+		   Date fechaFinal = new Date();
+		   
+		   Long diferencia = 5l;
+		   Long segundosPorDia = 3l;
+	       
+	       Long dia =diferencia*segundosPorDia;
+		
+		// Act
+	       CalculaTiempoParqueaderoLogica.calcularTiempoParqueadero(fechaRegistro,fechaFinal);
+		 
+		// Assert
+		   assertEquals(15, dia,1);
+	}
+	
 
 }
