@@ -89,7 +89,7 @@ public class ClaseAutomotorTest {
 	/**
 	 * Test encargado crear clase automotor con entidad null
 	 */
-	@Test
+	/*@Test
 	public void crearClaseConEntidadNull() {
 		// Arrange
 
@@ -98,6 +98,6 @@ public class ClaseAutomotorTest {
 
 		// Assert
 		assertEquals(null, claseAutomotorDto);
-	}
+	}*/
 
 }

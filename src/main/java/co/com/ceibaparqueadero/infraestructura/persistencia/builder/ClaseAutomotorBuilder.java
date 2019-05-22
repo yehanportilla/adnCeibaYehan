@@ -13,7 +13,7 @@ public class ClaseAutomotorBuilder {
 	 * Metodo encargado de convertir de dto a entidad
 	 */
 
-	public static ClaseAutomotorDto convertirADominio(ClaseAutomotorEntidad claseAutomotorEntidad) {
+	/*public static ClaseAutomotorDto convertirADominio(ClaseAutomotorEntidad claseAutomotorEntidad) {
 
 		ClaseAutomotorDto claseAutomotorDto = null;
 
@@ -23,7 +23,7 @@ public class ClaseAutomotorBuilder {
 		}
 
 		return claseAutomotorDto;
-	}
+	}*/
 
 	/*
 	 * Metodo encargado de convertir de entidad a dto

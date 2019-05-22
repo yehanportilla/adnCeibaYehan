@@ -9,10 +9,10 @@ public class ClaseAutomotorDto {
 
 	}
 
-	public ClaseAutomotorDto(Long id, String nombre) {
+	/*public ClaseAutomotorDto(Long id, String nombre) {
 		this.id = id;
 		this.nombre = nombre;
-	}
+	}*/
 
 	public Long getId() {
 		return id;
