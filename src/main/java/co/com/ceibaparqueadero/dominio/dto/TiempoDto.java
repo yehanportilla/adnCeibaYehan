@@ -5,15 +5,6 @@ public class TiempoDto {
 	private Long id;
 	private String nombre;
 
-	public TiempoDto() {
-
-	}
-
-	public TiempoDto(Long id, String nombre) {
-		this.id = id;
-		this.nombre = nombre;
-	}
-
 	public Long getId() {
 		return id;
 	}

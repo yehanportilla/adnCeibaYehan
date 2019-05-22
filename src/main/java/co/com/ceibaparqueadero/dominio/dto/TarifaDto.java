@@ -10,17 +10,6 @@ public class TarifaDto {
 	private ClaseAutomotorEntidad claseAutomotorEntidad;
 	private TiempoEntidad tiempoEntidad;
 
-	public TarifaDto() {
-
-	}
-
-	public TarifaDto(Long id, Double valor, ClaseAutomotorEntidad claseAutomotorEntidad, TiempoEntidad tiempoEntidad) {
-		this.id = id;
-		this.valor = valor;
-		this.claseAutomotorEntidad = claseAutomotorEntidad;
-		this.tiempoEntidad = tiempoEntidad;
-	}
-
 	public Long getId() {
 		return id;
 	}

@@ -9,20 +9,6 @@ public class TiempoBuilder {
 	}
 
 	/*
-	 * Metodo encargado de convertir de dto a entidad
-	 */
-	public static TiempoDto convertirADominio(TiempoEntidad tiempoEntidad) {
-
-		TiempoDto tiempoDto = null;
-
-		if (tiempoEntidad != null) {
-
-			tiempoDto = new TiempoDto(tiempoEntidad.getId(), tiempoEntidad.getNombre());
-		}
-		return tiempoDto;
-	}
-
-	/*
 	 * Metodo encargado de convertir de entidad a dto
 	 */
 	public static TiempoEntidad convertirAEntidad(TiempoDto tiempoDto) {

@@ -5,24 +5,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEnti
 
 public class TarifaBuilder {
 
-	TarifaBuilder() {
-
-	}
-
-	/*
-	 * Metodo encargado de convertir de dto a entidad
-	 */
-	public static TarifaDto convertirADominio(TarifaEntidad tarifaEntidad) {
-
-		TarifaDto tarifaDto = null;
-
-		if (tarifaEntidad != null) {
-			tarifaDto = new TarifaDto(tarifaEntidad.getId(), tarifaEntidad.getValor(),
-					tarifaEntidad.getClaseAutomotorEntidad(), tarifaEntidad.getTiempoEntidad());
-		}
-
-		return tarifaDto;
-	}
+	TarifaBuilder() {}
 
 	/*
 	 * Metodo encargado de convertir de entidad a dto

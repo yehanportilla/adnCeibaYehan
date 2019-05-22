@@ -87,21 +87,4 @@ public class TarifaLogicaTest {
 		assertEquals(null, tarifaEntidad);
 	}
 
-	/**
-	 * Test encargado crear la tarifa  con entidad null
-	 */
-	@Test
-	public void crearTarifaConEntidadNull() {
-		// Arrange
-
-		// Act
-		TarifaDto tarifaDto = TarifaBuilder.convertirADominio(null);
-
-		// Assert
-		assertEquals(null, tarifaDto);
-	}
-	
-	
-	
-
 }
