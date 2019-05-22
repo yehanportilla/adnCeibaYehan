@@ -163,7 +163,7 @@ public class ValidacionParqueaderoTest {
 	public void validarCilindradaMinimo() throws ParqueaderoExcepcion {
 
 		// Arrange
-		Long numCilindrada = 0l;
+		Long numCilindrada = 1L;
 
 		try {
 			// Act
