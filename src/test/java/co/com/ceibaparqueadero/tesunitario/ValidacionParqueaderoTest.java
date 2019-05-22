@@ -49,7 +49,7 @@ public class ValidacionParqueaderoTest {
 		Long tipoAutomotor = 3l;
 		try {
 			// Act
-			validacionParqueaderoLogicaMock.validarTipoAutomotor(tipoAutomotor);
+			validacionParqueaderoLogica.validarTipoAutomotor(tipoAutomotor);
 
 		} catch (ParqueaderoExcepcion ex) {
 			// Assert
@@ -68,7 +68,7 @@ public class ValidacionParqueaderoTest {
 		Long tipoAutomotor = 2l;
 		try {
 			// Act
-			validacionParqueaderoLogicaMock.validarTipoAutomotor(tipoAutomotor);
+			validacionParqueaderoLogica.validarTipoAutomotor(tipoAutomotor);
 
 		} catch (ParqueaderoExcepcion ex) {
 			// Assert
@@ -87,7 +87,7 @@ public class ValidacionParqueaderoTest {
 		Long tipoAutomotor = 1l;
 		try {
 			// Act
-			validacionParqueaderoLogicaMock.validarTipoAutomotor(tipoAutomotor);
+			validacionParqueaderoLogica.validarTipoAutomotor(tipoAutomotor);
 
 		} catch (ParqueaderoExcepcion ex) {
 			// Assert
@@ -147,10 +147,10 @@ public class ValidacionParqueaderoTest {
 		// Arrange
 		String numPlaca = "LBC123";
 
-		when(validacionParqueaderoLogicaMock.obtenerDia()).thenReturn(Calendar.MONDAY);
+		when(validacionParqueaderoLogica.obtenerDia()).thenReturn(Calendar.MONDAY);
 		try {
 			// Act
-			validacionParqueaderoLogicaMock.validarIngresoPlacaDia(numPlaca);
+			validacionParqueaderoLogica.validarIngresoPlacaDia(numPlaca);
 
 		} catch (Exception e) {
 			// Assert
