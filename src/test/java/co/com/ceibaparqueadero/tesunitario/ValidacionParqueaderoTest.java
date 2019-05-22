@@ -144,7 +144,7 @@ public class ValidacionParqueaderoTest {
 	public void validarPlacaLunes() {
 
 		// Arrange
-		String numPlaca = "ABC123";
+		String numPlaca = "LBC123";
 
 		when(validacionParqueaderoLogicaMock.obtenerDia()).thenReturn(Calendar.MONDAY);
 		try {
@@ -156,30 +156,6 @@ public class ValidacionParqueaderoTest {
 			assertEquals(MENSAJE_PLACA, e.getMessage());
 		}
 	}
-	
-	
-	/**
-	 * Test encargado de validar placa que enpieze por A, no ingresa Domingo
-	 * 
-	 */
-	@Test
-	public void validarPlacaDomingo() {
-
-		// Arrange
-		String numPlaca = "ABC123";
-
-		when(validacionParqueaderoLogicaMock.obtenerDia()).thenReturn(Calendar.SUNDAY);
-		try {
-			// Act
-			validacionParqueaderoLogicaMock.validarIngresoPlacaDia(numPlaca);
-
-		} catch (Exception e) {
-			// Assert
-			assertEquals(MENSAJE_PLACA, e.getMessage());
-		}
-	}
-	
-	
 
 	/**
 	 * Test encargado de validar el ciliendraje
