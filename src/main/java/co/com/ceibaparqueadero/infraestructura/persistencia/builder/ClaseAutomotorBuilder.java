@@ -10,22 +10,6 @@ public class ClaseAutomotorBuilder {
 	}
 
 	/*
-	 * Metodo encargado de convertir de dto a entidad
-	 */
-
-	/*public static ClaseAutomotorDto convertirADominio(ClaseAutomotorEntidad claseAutomotorEntidad) {
-
-		ClaseAutomotorDto claseAutomotorDto = null;
-
-		if (claseAutomotorEntidad != null) {
-
-			claseAutomotorDto = new ClaseAutomotorDto(claseAutomotorEntidad.getId(), claseAutomotorEntidad.getNombre());
-		}
-
-		return claseAutomotorDto;
-	}*/
-
-	/*
 	 * Metodo encargado de convertir de entidad a dto
 	 */
 	public static ClaseAutomotorEntidad convertirAEntidad(ClaseAutomotorDto claseAutomotorDto) {

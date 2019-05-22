@@ -86,18 +86,4 @@ public class ClaseAutomotorTest {
 		assertEquals(null, claseAutomotorEntidad);
 	}
 
-	/**
-	 * Test encargado crear clase automotor con entidad null
-	 */
-	/*@Test
-	public void crearClaseConEntidadNull() {
-		// Arrange
-
-		// Act
-		ClaseAutomotorDto claseAutomotorDto = ClaseAutomotorBuilder.convertirADominio(null);
-
-		// Assert
-		assertEquals(null, claseAutomotorDto);
-	}*/
-
 }
