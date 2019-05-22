@@ -246,21 +246,22 @@ public class ValidacionParqueaderoTest {
 		
 		// Arrange
 		   SimpleDateFormat fechaInicio = new SimpleDateFormat("yyy-mm-dd H:m:s");
-		   String fecha= "2019-05-22 08:00:00";
+		   String fecha= "2019-05-23 17:00:00";
 		   Date fechaRegistro = fechaInicio.parse(fecha);
 		   
 		   Date fechaFinal = new Date();
 		   
-		   Long diferencia = 5l;
-		   Long segundosPorDia = 3l;
+		   int diferencia = (int) ((fechaFinal.getTime() - fechaRegistro.getTime()) / 1000);
+		   int segundosPorDia = 86400;
 	       
-	       Long dia =diferencia*segundosPorDia;
+		   double dia = (diferencia/segundosPorDia);
+		   //dias = (int) Math.floor(dia);
 		
 		// Act
 	       CalculaTiempoParqueaderoLogica.calcularTiempoParqueadero(fechaRegistro,fechaFinal);
 		 
 		// Assert
-		   assertEquals(15, dia,1);
+		   assertEquals(dia, 118.0d, 3);
 	}
 	
 
