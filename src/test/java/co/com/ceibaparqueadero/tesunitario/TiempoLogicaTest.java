@@ -14,6 +14,7 @@ import org.mockito.MockitoAnnotations;
 import co.com.ceibaparqueadero.dominio.dto.TiempoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
+import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TiempoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoRepositorio;
 
@@ -72,6 +73,41 @@ public class TiempoLogicaTest {
 
 		}
 	}
+	
+	
+	/**
+	 * Test encargado crear tiempo con dominio
+	 */
+
+	@Test
+	public void crearTiempoEntidadConDominioNull() {
+		// Arrange
+
+		// Act
+		TiempoEntidad tiempoEntidad = TiempoBuilder.convertirAEntidad(null);
+
+		// Assert
+		assertEquals(null, tiempoEntidad);
+	}
+
+	/**
+	 * Test encargado crear tiempo con entidad null
+	 */
+	@Test
+	public void crearTiempoConEntidadNull() {
+		// Arrange
+
+		// Act
+		TiempoDto tiempoDto = TiempoBuilder.convertirADominio(null);
+
+		// Assert
+		assertEquals(null, tiempoDto);
+	}
+	
+	
+	
+	
+	
 	
 	
 
