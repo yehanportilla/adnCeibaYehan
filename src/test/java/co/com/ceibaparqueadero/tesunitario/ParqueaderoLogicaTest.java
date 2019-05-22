@@ -12,12 +12,12 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import co.com.ceibaparqueadero.dominio.dto.ParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.ParqueaderoLogica;
+import co.com.ceibaparqueadero.dominio.logica.ValidacionParqueaderoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.ParqueaderoBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEntidad;
@@ -42,6 +42,11 @@ public class ParqueaderoLogicaTest {
 	
 	@Mock
 	ParqueaderoLogica parqueaderoLogicaMock;
+	
+	
+	@Mock
+	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
+	
 	
 	@Before
 	public void setUp() {
@@ -178,6 +183,25 @@ public class ParqueaderoLogicaTest {
 		
 	}
 	
+	//-------------------
+	
+	@Test
+	public void validarMensajeEscepcion() throws ParqueaderoExcepcion{
+
+		// Arrange
+		
+		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
+	
+		try {
+			// Act
+			parqueaderoLogicaMock.registrarAutomotorParqueadero(detalleParqueo);
+			
+			} catch (ParqueaderoExcepcion e) {
+			// Assert
+				assertEquals(MENSAJE_ERROR, e.getMessage());
+
+		}
+	}
 	
 
 }
