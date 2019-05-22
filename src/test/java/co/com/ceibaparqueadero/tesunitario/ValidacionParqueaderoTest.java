@@ -146,7 +146,6 @@ public class ValidacionParqueaderoTest {
 
 	}
 	
-	//---------------------- por corregir
 	/**
 	 * Test encargado de validar el cupo para el parqueadero Moto
 	 */

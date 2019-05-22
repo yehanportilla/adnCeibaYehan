@@ -9,10 +9,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
+import org.mockito.Spy;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import co.com.ceibaparqueadero.dominio.dto.ParqueaderoDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
@@ -23,10 +24,12 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEnti
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ParqueaderoEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @RunWith(SpringRunner.class)
-@DataJpaTest
+@SpringBootTest
+@Transactional
 public class ParqueaderoLogicaTest {
 	
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
@@ -34,9 +37,11 @@ public class ParqueaderoLogicaTest {
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 	
+	@InjectMocks
+	ParqueaderoLogica parqueaderoLogica;
 	
 	@Mock
-	ParqueaderoLogica parqueaderoLogica;
+	ParqueaderoLogica parqueaderoLogicaMock;
 	
 	@Before
 	public void setUp() {
@@ -72,18 +77,16 @@ public class ParqueaderoLogicaTest {
 		
 		ClaseAutomotorEntidad claseAutomotorEntidad = new ClaseAutomotorEntidad();
 		claseAutomotorEntidad.setId(id);
-		
 		EstadoEntidad estadoEntidad = new EstadoEntidad();
 		estadoEntidad.setId(id);
-		
 		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
-		
 		detalleParqueo.setClaseAutomotorEntidad(claseAutomotorEntidad);
 		detalleParqueo.setEstadoEntidad(estadoEntidad);
 		
 		try {
 			// Act
-			parqueaderoLogica.registrarAutomotorParqueadero(detalleParqueo);
+			parqueaderoLogicaMock.registrarAutomotorParqueadero(detalleParqueo);
+			
 	
 			} catch (ParqueaderoExcepcion e) {
 			// Assert
