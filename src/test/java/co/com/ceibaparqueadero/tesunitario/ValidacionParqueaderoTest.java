@@ -16,7 +16,7 @@ import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.springframework.test.context.junit4.SpringRunner;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,8 +42,8 @@ public class ValidacionParqueaderoTest {
 	@Spy
 	private ValidacionParqueaderoLogica validacionParqueaderoLogica;
 	
-	@InjectMocks
-	private CalculaTiempoParqueaderoLogica calculaTiempoParqueaderoLogicaSpy;
+	@Autowired
+	private CalculaTiempoParqueaderoLogica calculaTiempoParqueaderoLogica;
 	
 	
 	@InjectMocks
@@ -240,7 +240,10 @@ public class ValidacionParqueaderoTest {
 	}
 	
 	
-	//----
+	/**
+	 * Test para validar el dia
+	 * @throws ParseException
+	 */
 	@Test
 	public void validarTiempoParqueadero() throws ParseException {
 		
@@ -251,17 +254,15 @@ public class ValidacionParqueaderoTest {
 		   
 		   Date fechaFinal = new Date();
 		   
-		   int diferencia = (int) ((fechaFinal.getTime() - fechaRegistro.getTime()) / 1000);
+		// Act
+		   calculaTiempoParqueaderoLogica.calcularTiempoParqueadero(fechaRegistro,fechaFinal);
+	       int diferencia = (int) ((fechaFinal.getTime() - fechaRegistro.getTime()) / 1000);
 		   int segundosPorDia = 86400;
 	       
 		   double dia = (diferencia/segundosPorDia);
-		   //dias = (int) Math.floor(dia);
-		
-		// Act
-	       CalculaTiempoParqueaderoLogica.calcularTiempoParqueadero(fechaRegistro,fechaFinal);
 		 
 		// Assert
-		   assertEquals(dia, 118.0d, 3);
+		   assertEquals(dia, 118, 3);
 	}
 	
 
