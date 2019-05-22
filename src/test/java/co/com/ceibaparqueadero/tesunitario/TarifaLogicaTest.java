@@ -7,8 +7,12 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
@@ -17,14 +21,14 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TarifaBuilde
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
-import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
 
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@Transactional 
 public class TarifaLogicaTest {
 
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
-
-	@Mock
-	private TarifaRepositorio tarifaRepositorio;
 
 	@Mock
 	TarifaLogica tarifaLogica;
@@ -90,6 +94,7 @@ public class TarifaLogicaTest {
 	/**
 	 * Test encargado de validar el set y get de la tabla tarifa
 	 */
+	@Test
 	public void validarEntidadTarifa() {
 
 		// Arrange

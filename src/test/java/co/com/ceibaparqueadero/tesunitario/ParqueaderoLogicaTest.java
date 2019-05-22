@@ -1,7 +1,7 @@
 package co.com.ceibaparqueadero.tesunitario;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.when;
+
 
 import java.util.Arrays;
 import java.util.Date;
@@ -181,29 +181,6 @@ public class ParqueaderoLogicaTest {
 		assertEquals(id,parqueaderoDto.getId());
 		assertEquals(fechaSalida,parqueaderoDto.getFechaSalida());
 		assertEquals(valor,parqueaderoDto.getValor());
-		
 	}
-	
-	//-------------------
-	
-	@Test
-	public void validarMensajeEscepcion() throws ParqueaderoExcepcion{
-
-		// Arrange
-		
-		ParqueaderoDto detalleParqueo = new ParqueaderoDto();
-	
-		try {
-			// Act
-			
-			 when(parqueaderoLogicaMock.registrarAutomotorParqueadero(detalleParqueo)).thenReturn(null); 
-			 
-			} catch (ParqueaderoExcepcion e) {
-			// Assert
-				assertEquals(MENSAJE_ERROR, e.getMessage());
-
-		}
-	}
-	
 
 }
