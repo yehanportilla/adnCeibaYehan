@@ -38,8 +38,6 @@ public class ValidacionParqueaderoTest {
 	@Spy
 	private ValidacionParqueaderoLogica validacionParqueaderoLogica;
 	
-	@Mock
-	private ValidacionParqueaderoLogica validacionParqueaderoSimulacro;
 	
 	@InjectMocks
 	private ValidacionParqueaderoLogica validacionParqueaderoLogicaMock;
@@ -202,6 +200,28 @@ public class ValidacionParqueaderoTest {
 		String numPlaca = "ABC123";
 
 		when(validacionParqueaderoLogica.obtenerDia()).thenReturn(Calendar.MONDAY);
+		try {
+			// Act
+			validacionParqueaderoLogica.validarIngresoPlacaDia(numPlaca);
+			fail();
+
+		} catch (Exception e) {
+			// Assert
+			assertEquals(MENSAJE_PLACA, e.getMessage());
+		}
+	}
+	
+	/**
+	 * Test encargado de validar placa que enpieze por A, no ingresa Domingo
+	 * 
+	 */
+	@Test
+	public void validarPlacaDomingo() {
+
+		// Arrange
+		String numPlaca = "ABC124";
+
+		when(validacionParqueaderoLogica.obtenerDia()).thenReturn(Calendar.SUNDAY);
 		try {
 			// Act
 			validacionParqueaderoLogica.validarIngresoPlacaDia(numPlaca);
