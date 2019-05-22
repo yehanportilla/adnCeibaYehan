@@ -144,7 +144,7 @@ public class ValidacionParqueaderoTest {
 	public void validarPlacaLunes() {
 
 		// Arrange
-		String numPlaca = "BBC123";
+		String numPlaca = "ABC123";
 
 		when(validacionParqueaderoLogicaMock.obtenerDia()).thenReturn(Calendar.MONDAY);
 		try {
