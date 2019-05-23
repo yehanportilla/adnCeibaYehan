@@ -5,9 +5,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.EstadoEnti
 
 public class EstadoBuilder {
 
-	EstadoBuilder() {
-
-	}
+	EstadoBuilder() {}
 
 	/*
 	 * Metodo encargado de convertir de entidad a dto

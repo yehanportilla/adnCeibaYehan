@@ -5,9 +5,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.Parqueader
 
 public class ParqueaderoBuilder {
 
-	ParqueaderoBuilder() {
-
-	}
+	ParqueaderoBuilder() {}
 
 	/*
 	 * Metodo encargado de convertir de dto a entidad

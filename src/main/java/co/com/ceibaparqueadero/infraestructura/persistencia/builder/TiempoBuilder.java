@@ -5,8 +5,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEnti
 
 public class TiempoBuilder {
 
-	TiempoBuilder() {
-	}
+	TiempoBuilder() {}
 
 	/*
 	 * Metodo encargado de convertir de entidad a dto

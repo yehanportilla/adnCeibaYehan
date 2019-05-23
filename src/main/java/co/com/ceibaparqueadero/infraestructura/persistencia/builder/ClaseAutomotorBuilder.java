@@ -5,9 +5,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutom
 
 public class ClaseAutomotorBuilder {
 
-	ClaseAutomotorBuilder() {
-
-	}
+	ClaseAutomotorBuilder() {}
 
 	/*
 	 * Metodo encargado de convertir de entidad a dto

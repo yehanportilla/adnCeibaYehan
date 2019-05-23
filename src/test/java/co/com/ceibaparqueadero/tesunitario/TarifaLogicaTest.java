@@ -14,6 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
@@ -115,7 +116,27 @@ public class TarifaLogicaTest {
 		assertEquals(valor, tarifaEntidad.getValor());
 		assertEquals(claseAutomotorEntidad, tarifaEntidad.getClaseAutomotorEntidad());
 		assertEquals(tiempoEntidad, tarifaEntidad.getTiempoEntidad());
-
 	}
+	
+	/**
+	 * Test encargado de validar constructor tarifaentidad
+	 */
+	  @Test
+	  public void validarConstructorTarifa() {
+		  
+		  Long id=1l;
+		  Double valor=5000d;
+		  ClaseAutomotorEntidad claseAutomotorEntidad = new ClaseAutomotorEntidad();
+		  TiempoEntidad tiempoEntidad = new TiempoEntidad();
+		  
+		  TarifaEntidad tarifaEntidad = new TarifaEntidad(id,valor,claseAutomotorEntidad,tiempoEntidad);
+		 
+		  assertEquals(id,tarifaEntidad.getId());
+		  assertEquals(valor,tarifaEntidad.getValor());
+		  assertEquals(claseAutomotorEntidad,tarifaEntidad.getClaseAutomotorEntidad());
+		  assertEquals(tiempoEntidad,tarifaEntidad.getTiempoEntidad());
+		  
+	  }
+	
 
 }
