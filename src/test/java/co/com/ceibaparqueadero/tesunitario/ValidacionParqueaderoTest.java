@@ -292,6 +292,55 @@ public class ValidacionParqueaderoTest {
 	}
 	
 	
+	/**
+	 * Test para validar el dia  donde la diferencia sea mayor a segundos por hora
+	 * @throws ParseException
+	 */
+	@Test
+	public void validarDiferenciaMayorSegundoPorHora() throws ParseException {
+		
+		// Arrange
+		   SimpleDateFormat fechaInicio = new SimpleDateFormat("yyy-mm-dd H:m:s");
+		   String fecha= "2019-05-23 17:00:00";
+		   Date fechaRegistro = fechaInicio.parse(fecha);
+		   
+		   Date fechaFinal = new Date();
+		   
+		// Act
+		   CalculaTiempoParqueaderoLogica.calcularTiempoParqueadero(fechaRegistro,fechaFinal);
+	       int diferencia = (int) ((fechaFinal.getTime() - fechaRegistro.getTime()) / 1000);
+		   int segundosPorHora = 3600;
+	       
+		   double dia = (diferencia/segundosPorHora);
+		 
+		// Assert
+		   assertEquals(dia, 2873, 3);
+	}
+	
+	/**
+	 * Test para validar el dia  donde la diferencia sea menor a segundos por hora
+	 * @throws ParseException
+	 */
+	@Test
+	public void validarDiferenciaMenorSegundoPorHora() throws ParseException {
+		
+		// Arrange
+		   SimpleDateFormat fechaInicio = new SimpleDateFormat("yyy-mm-dd H:m:s");
+		   String fecha= "2019-05-22 17:00:00";
+		   Date fechaRegistro = fechaInicio.parse(fecha);
+		   
+		   Date fechaFinal = new Date();
+		   
+		// Act
+		   CalculaTiempoParqueaderoLogica.calcularTiempoParqueadero(fechaRegistro,fechaFinal);
+	       int diferencia = (int) ((fechaFinal.getTime() - fechaRegistro.getTime()) / 1000);
+		   int segundosPorHora = 3600;
+	       
+		   double dia = (diferencia/segundosPorHora);
+		 
+		// Assert
+		   assertEquals(dia, 2897, 3);
+	}
 	
 	/**
 	 * Test valida Registro salida automotor
