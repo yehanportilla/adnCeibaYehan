@@ -89,7 +89,7 @@ public class TarifaLogicaTest {
 		TarifaEntidad tarifaEntidad = TarifaBuilder.convertirAEntidad(null);
 
 		// Assert
-		assertEquals(null, tarifaEntidad);
+		assertEquals(null,tarifaEntidad);
 	}
 
 	/**
@@ -135,6 +135,7 @@ public class TarifaLogicaTest {
 		  assertEquals(valor,tarifaEntidad.getValor());
 		  assertEquals(claseAutomotorEntidad,tarifaEntidad.getClaseAutomotorEntidad());
 		  assertEquals(tiempoEntidad,tarifaEntidad.getTiempoEntidad());
+	
 		  
 	  }
 	

@@ -21,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
 import co.com.ceibaparqueadero.dominio.logica.CalculaTiempoParqueaderoLogica;
+import co.com.ceibaparqueadero.dominio.logica.SalidaParqueaderoLogica;
 import co.com.ceibaparqueadero.dominio.logica.ValidacionParqueaderoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.ParqueaderoRepositorio;
 
@@ -34,12 +35,16 @@ public class ValidacionParqueaderoTest {
 	private static final String MENSAJE_CUPO_CARRO = "Lo sentimos no hay cupo para carro   !";
 	private static final String MENSAJE_PLACA = "Lo sentimos. No esta autorizado a ingresar  !";
 	private static final String MENSAJE_CILINDRADA = "Cilindraje no permitido   !";
+	private static final String MENSAJE_PLACAS = "El vehiculo no se encuentra registrado !";
 
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
 
 	@Spy
 	private ValidacionParqueaderoLogica validacionParqueaderoLogica;
+	
+	@Spy
+	private SalidaParqueaderoLogica salidaParqueaderoLogicaSpy;
 	
 	
 	@InjectMocks
@@ -261,5 +266,25 @@ public class ValidacionParqueaderoTest {
 		   assertEquals(dia, 118, 3);
 	}
 	
-
+	/**
+	 * Test valida Registro salida automotor
+	 */
+	public void validarSalidaVehiculo() {
+		
+		// Arrange
+		String placa = "CCD123";
+		Long estadoId =5l;
+		when(parqueaderoRepositorio.obtenerPlacaRegistrada(placa, estadoId)).thenReturn(null);
+		
+		try {
+			// Act
+			salidaParqueaderoLogicaSpy.registroSalidaAutomotor(placa);
+			
+		} catch (Exception e) {
+			// Assert
+			assertEquals(MENSAJE_PLACAS, e.getMessage());
+		}
+		
+	}
+	
 }
