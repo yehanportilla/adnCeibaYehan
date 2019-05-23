@@ -16,7 +16,7 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.Parquea
 public class SalidaParqueaderoLogica {
 	
 	private static final String MENSAJE_ERROR = "Error: Al registrar salida vehiculo !";
-	private static final String MENSAJE_PLACA = "El vehiculo no se encuentra registrado !";
+	private static final String MENSAJE_PLACA_SINREGISTRO = "El vehiculo no se encuentra registrado !";
 	private static final Long ESTADO_REGISTRADO = 1l;
 	private static final Long ESTADO_PAGADO = 2l;
 	
@@ -41,7 +41,7 @@ public class SalidaParqueaderoLogica {
 		Date fechaSalida = new Date();
 		
 		if(parqueaderoEntidad==null) {
-		throw new ParqueaderoExcepcion(MENSAJE_PLACA);
+		throw new ParqueaderoExcepcion(MENSAJE_PLACA_SINREGISTRO);
 		}
 		parqueaderoEntidad.setFechaSalida(fechaSalida);
 		Long tipoAutomotor = parqueaderoEntidad.getClaseAutomotorEntidad().getId();

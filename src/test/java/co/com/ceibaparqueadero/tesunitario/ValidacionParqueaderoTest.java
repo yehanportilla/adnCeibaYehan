@@ -35,7 +35,7 @@ public class ValidacionParqueaderoTest {
 	private static final String MENSAJE_CUPO_CARRO = "Lo sentimos no hay cupo para carro   !";
 	private static final String MENSAJE_PLACA = "Lo sentimos. No esta autorizado a ingresar  !";
 	private static final String MENSAJE_CILINDRADA = "Cilindraje no permitido   !";
-	private static final String MENSAJE_PLACAS = "El vehiculo no se encuentra registrado !";
+	private static final String MENSAJE_PLACA_SINREGISTRO = "El vehiculo no se encuentra registrado !";
 
 	@Mock
 	private ParqueaderoRepositorio parqueaderoRepositorio;
@@ -269,20 +269,20 @@ public class ValidacionParqueaderoTest {
 	/**
 	 * Test valida Registro salida automotor
 	 */
-	public void validarSalidaVehiculo() {
+	public void validarSalidaVehiculo() throws ParqueaderoExcepcion{
 		
 		// Arrange
 		String placa = "CCD123";
-		Long estadoId =5l;
+		Long estadoId =1l;
 		when(parqueaderoRepositorio.obtenerPlacaRegistrada(placa, estadoId)).thenReturn(null);
 		
 		try {
 			// Act
 			salidaParqueaderoLogicaSpy.registroSalidaAutomotor(placa);
 			
-		} catch (Exception e) {
+		} catch (ParqueaderoExcepcion e) {
 			// Assert
-			assertEquals(MENSAJE_PLACAS, e.getMessage());
+			assertEquals(MENSAJE_PLACA_SINREGISTRO, e.getMessage());
 		}
 		
 	}
