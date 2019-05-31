@@ -15,7 +15,7 @@ public class EstadoBuilder {
 
 		EstadoEntidad estadoEntidad = null;
 
-		if (estadoDto != null) {
+		if (estadoDto != null) { // retirar   maper 
 
 			estadoEntidad = new EstadoEntidad(estadoDto.getId(), estadoDto.getNombre());
 		}
