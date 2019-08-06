@@ -250,7 +250,7 @@ public class ValidacionParqueaderoTest {
 		
 		// Arrange
 		   SimpleDateFormat fechaInicio = new SimpleDateFormat("yyyy-mm-dd H:m:s");
-		   String fecha= "2019-05-22 17:00:00";
+		   String fecha= "2019-08-06 17:00:00";
 		   Date fechaRegistro = fechaInicio.parse(fecha);
 		   
 		   Date fechaFinal = new Date();
@@ -263,7 +263,7 @@ public class ValidacionParqueaderoTest {
 		   double dia = (diferencia/segundosPorDia);
 		 
 		// Assert
-		   assertEquals(dia, 118, 3);
+		   assertEquals(dia, 212.0, 3);
 	}
 	
 	/**
@@ -288,7 +288,7 @@ public class ValidacionParqueaderoTest {
 		   double dia = (diferencia/segundosPorDia);
 		 
 		// Assert
-		   assertEquals(dia, 118, 3);
+		   assertEquals(dia, 194.0, 3);
 	}
 	
 	
@@ -301,7 +301,7 @@ public class ValidacionParqueaderoTest {
 		
 		// Arrange
 		   SimpleDateFormat fechaInicio = new SimpleDateFormat("yyyy-mm-dd H:m:s");
-		   String fecha= "2019-05-22 08:00:00";
+		   String fecha= "2019-08-06 08:00:00";
 		   Date fechaRegistro = fechaInicio.parse(fecha);
 		   
 		   Date fechaFinal = new Date();
@@ -314,7 +314,7 @@ public class ValidacionParqueaderoTest {
 		   double hora = (diferencia/segundosPorHora);
 		 
 		// Assert
-		   assertEquals(hora, 2906, 3);
+		   assertEquals(hora, 5097.0, 3);
 	}
 	
 	/**
