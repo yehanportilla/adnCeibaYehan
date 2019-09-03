@@ -1,6 +1,6 @@
 package co.com.ceibaparqueadero.tesunitario;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
@@ -79,7 +79,6 @@ public class TiempoLogicaTest {
 	/**
 	 * Test encargado crear tiempo con dominio
 	 */
-
 	@Test
 	public void crearTiempoEntidadConDominioNull() {
 		// Arrange
@@ -117,8 +116,5 @@ public class TiempoLogicaTest {
 		assertEquals(hora,tiempoParqueaderoDto.getMinuto());
 		assertEquals(hora,tiempoParqueaderoDto.getSegundo());
 	}
-	
-	
-	
 	
 }

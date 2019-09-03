@@ -1,27 +1,39 @@
 package co.com.ceibaparqueadero.tesunitario;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import co.com.ceibaparqueadero.dominio.dto.TarifaDto;
 import co.com.ceibaparqueadero.dominio.exepciones.ParqueaderoExcepcion;
+import co.com.ceibaparqueadero.dominio.logica.ClaseAutomotorLogica;
 import co.com.ceibaparqueadero.dominio.logica.TarifaLogica;
+import co.com.ceibaparqueadero.dominio.logica.TiempoLogica;
 import co.com.ceibaparqueadero.infraestructura.persistencia.builder.TarifaBuilder;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.ClaseAutomotorEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TarifaEntidad;
 import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEntidad;
+import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TarifaRepositorio;
+import co.com.ceibaparqueadero.infraestructura.persistencia.repositorios.TiempoRepositorio;
 
 
 @RunWith(SpringRunner.class)
@@ -30,10 +42,22 @@ import co.com.ceibaparqueadero.infraestructura.persistencia.entidades.TiempoEnti
 public class TarifaLogicaTest {
 
 	private static final String MENSAJE_ERROR = "Error: Al Registrar  !";
-
+	
 	@Mock
-	TarifaLogica tarifaLogica;
-
+	private TarifaLogica tarifaLogicaMock;
+    
+    @InjectMocks
+    private TiempoLogica tiempoLogicaInMock;
+    
+    @Mock
+	private TiempoRepositorio tiempoRepositorio;
+    
+    @Autowired
+    private TarifaRepositorio tarifaRepositorio;
+    
+    @Mock
+    private ClaseAutomotorLogica claseAutomotorLogicaMock;
+    
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
@@ -49,7 +73,7 @@ public class TarifaLogicaTest {
 		List<String> esperado = Arrays.asList();
 
 		// Act
-		List<TarifaEntidad> tarifaEntidad = tarifaLogica.listarTarifa();
+		List<TarifaEntidad> tarifaEntidad = tarifaLogicaMock.listarTarifa();
 
 		// Assert
 		assertEquals(esperado, tarifaEntidad);
@@ -68,7 +92,7 @@ public class TarifaLogicaTest {
 
 		try {
 			// Act
-			tarifaLogica.guardarTarifa(detalleTarifa);
+			tarifaLogicaMock.guardarTarifa(detalleTarifa);
 
 		} catch (ParqueaderoExcepcion e) {
 			// Assert
@@ -80,7 +104,6 @@ public class TarifaLogicaTest {
 	/**
 	 * Test encargado crear la tarifa entidad con dominio
 	 */
-
 	@Test
 	public void crearTarifaEntidadConDominioNull() {
 		// Arrange
@@ -90,23 +113,6 @@ public class TarifaLogicaTest {
 
 		// Assert
 		assertEquals(null,tarifaEntidad);
-	}
-	
-	/**
-	 * Test encargado crear la tarifa
-	 */
-
-	@Test
-	public void ShouldCreateRateTest() {
-		// Arrange
-		
-		TarifaDto tarifaDto = new TarifaDto();
-		
-		// Act
-		TarifaEntidad tarifaEntidad = TarifaBuilder.convertirAEntidad(tarifaDto);
-
-		// Assert
-		assertNotNull(tarifaEntidad);
 	}
 	
 	/**
@@ -135,6 +141,46 @@ public class TarifaLogicaTest {
 		assertEquals(tiempoEntidad, tarifaEntidad.getTiempoEntidad());
 	}
 	
+	
+	/**
+	 * Test encargado crear la tarifa
+	 * @throws ParqueaderoExcepcion 
+	 */
+	
+	@Test
+	public void ShouldCreateRateTest() throws ParqueaderoExcepcion {
+        /*
+		// Arrange
+		TarifaDto tarifaDto = new TarifaDto();
+		// Act
+		TarifaEntidad tarifaEntidad = TarifaBuilder.convertirAEntidad(tarifaDto);
+		// Assert
+		assertNotNull(tarifaEntidad);*/
+		
+		TarifaDto tarifaDto = new TarifaDto();
+		//tarifaDto.setId(1l);
+		
+	   // when(tiempoLogicaInMock.buscarPorIdTiempo(tarifaDto.getTiempoEntidad().getId())).thenReturn(null);
+	    
+	    
+		//TiempoEntidad tiempoEntidad = new TiempoEntidad();
+		//TiempoEntidad tiempoEntidad = tiempo.get();
+		
+		//tarifaDto.setTiempoEntidad(tiempoEntidad);
+		
+		//TiempoEntidad tiempo = this.tarifaLogicaMock.guardarTarifa(tarifaDto).getTiempoEntidad();
+		
+		when(tarifaLogicaMock.guardarTarifa(any())).thenReturn(tarifaDto);
+		
+		//TarifaEntidad creaTarifa = tarifaRepositorio.save(TarifaBuilder.convertirAEntidad(tarifaDto));
+		
+		TarifaDto guardarTarifa = this.tarifaLogicaMock.guardarTarifa(tarifaDto);
+		
+		assertNotNull(guardarTarifa);
+	
+	}
+	
+	
 	/**
 	 * Test encargado de validar constructor tarifaentidad
 	 */
@@ -153,8 +199,6 @@ public class TarifaLogicaTest {
 		  assertEquals(claseAutomotorEntidad,tarifaEntidad.getClaseAutomotorEntidad());
 		  assertEquals(tiempoEntidad,tarifaEntidad.getTiempoEntidad());
 	
-		  
 	  }
 	
-
 }
