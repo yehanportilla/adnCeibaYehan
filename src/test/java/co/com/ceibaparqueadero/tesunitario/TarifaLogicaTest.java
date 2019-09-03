@@ -93,11 +93,11 @@ public class TarifaLogicaTest {
 	}
 	
 	/**
-	 * Test encargado crear la tarifa entidad con dominio no nulo
+	 * Test encargado crear la tarifa
 	 */
 
 	@Test
-	public void crearTarifaEntidadConDominioDatos() {
+	public void ShouldCreateRateTest() {
 		// Arrange
 		
 		TarifaDto tarifaDto = new TarifaDto();
