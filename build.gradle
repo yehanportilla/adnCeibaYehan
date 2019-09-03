@@ -33,3 +33,16 @@ dependencies {
 	testCompile ('junit:junit')
 }
 
+jacoco {
+    toolVersion = "0.8.4"
+    reportsDir = file("$buildDir/customJacocoReportDir")
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }  
+}
+test.finalizedBy jacocoTestReport
