@@ -1,0 +1,285 @@
+{
+	"info": {
+		"_postman_id": "74d431f8-20a0-4744-a3e4-214ed5a4f95b",
+		"name": "AdnParqueadero",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Lista clase automotor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clases",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar clase automotor",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"id\": 4,\n        \"nombre\": \"Volqueta\"\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clases",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clases"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista tiempos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tiempos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tiempos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar tiempo",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\": 3,\n   \"nombre\": \"Minutos\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tiempos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tiempos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar estados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/estados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar estado",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \"id\": 3,\n   \"nombre\": \"Cancelado\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/estados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"estados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista tarifas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tarifas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tarifas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar tarifa",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n        \"id\": 5,\n        \"valor\": 250,\n        \"claseAutomotorEntidad\": {\n            \"id\": 2\n        },\n        \"tiempoEntidad\": {\n            \"id\": 3\n        }\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tarifas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tarifas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Lista registro parqueadero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"registros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Guardar registro parqueadero",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"placa\": \"BOO123\",\n        \"cilindraje\": 650,\n        \"claseAutomotorEntidad\": {\n            \"id\": 2\n        },\n        \"estadoEntidad\": {\n            \"id\": 1\n        }\n    }"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/registros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"registros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Registrar parqueadero",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/registro/WWW123",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"registro",
+						"WWW123"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
