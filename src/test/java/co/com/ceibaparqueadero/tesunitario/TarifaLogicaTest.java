@@ -157,21 +157,29 @@ public class TarifaLogicaTest {
 		// Assert
 		assertNotNull(tarifaEntidad);*/
 		
+		Double valor=5000d;
+		
 		TarifaDto tarifaDto = new TarifaDto();
-		//tarifaDto.setId(1l);
+		tarifaDto.setId(1l);
+		tarifaDto.setValor(valor);
+		
+		//TiempoEntidad tiempoEntidad = new TiempoEntidad();
 		
 	   // when(tiempoLogicaInMock.buscarPorIdTiempo(tarifaDto.getTiempoEntidad().getId())).thenReturn(null);
 	    
-	    
-		//TiempoEntidad tiempoEntidad = new TiempoEntidad();
-		//TiempoEntidad tiempoEntidad = tiempo.get();
+		TiempoEntidad tiempoEntidad = new TiempoEntidad();
+		tiempoEntidad.setId(1l);
+		tiempoEntidad.setNombre("Dia");
 		
 		//tarifaDto.setTiempoEntidad(tiempoEntidad);
 		
-		//TiempoEntidad tiempo = this.tarifaLogicaMock.guardarTarifa(tarifaDto).getTiempoEntidad();
+	    when(tiempoLogicaInMock.buscarPorIdTiempo(tarifaDto.getTiempoEntidad().getId())).thenReturn(null);
 		
+	    //System.err.print("=========>"+tiempo.get().getNombre());
+	    
 		when(tarifaLogicaMock.guardarTarifa(any())).thenReturn(tarifaDto);
 		
+	
 		//TarifaEntidad creaTarifa = tarifaRepositorio.save(TarifaBuilder.convertirAEntidad(tarifaDto));
 		
 		TarifaDto guardarTarifa = this.tarifaLogicaMock.guardarTarifa(tarifaDto);
@@ -193,7 +201,7 @@ public class TarifaLogicaTest {
 		  TiempoEntidad tiempoEntidad = new TiempoEntidad();
 		  
 		  TarifaEntidad tarifaEntidad = new TarifaEntidad(id,valor,claseAutomotorEntidad,tiempoEntidad);
-		 
+		  
 		  assertEquals(id,tarifaEntidad.getId());
 		  assertEquals(valor,tarifaEntidad.getValor());
 		  assertEquals(claseAutomotorEntidad,tarifaEntidad.getClaseAutomotorEntidad());
