@@ -11,14 +11,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/clases",
+					"raw": "http://localhost:8090/api/parqueadero/clases",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"api",
+						"parqueadero",
 						"clases"
 					]
 				}
@@ -42,14 +43,15 @@
 					"raw": "  {\n        \"id\": 4,\n        \"nombre\": \"Volqueta\"\n    }"
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/clases",
+					"raw": "http://localhost:8090/api/parqueadero/clases",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"api",
+						"parqueadero",
 						"clases"
 					]
 				}
@@ -62,14 +64,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/tiempos",
+					"raw": "http://localhost:8090/api/parqueadero/tiempos",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8090",
 					"path": [
 						"api",
+						"parqueadero",
 						"tiempos"
 					]
 				}
